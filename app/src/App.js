@@ -1,4 +1,5 @@
 import './App.css';
+import './views/profile/Profile.module.css';
 import Header from "./views/common/Header";
 import Navigation from "./views/common/Navigation";
 import Profile from "./views/profile/Profile";

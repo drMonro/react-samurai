@@ -1,6 +1,9 @@
+import styles from './Navigation.module.css';
+
+
 export const Navigation = () => {
-    return <nav className="navigation">
-        <ul className="navigation-list">
+    return <nav className={styles._}>
+        <ul className={styles._list}>
             <li><a href="#">Profile</a></li>
             <li><a href="#">Messages</a></li>
             <li><a href="#">News</a></li>

@@ -1,0 +1,10 @@
+._ {
+    grid-area: navigation;
+    background-color: cornsilk;
+}
+
+._list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}

@@ -1,6 +1,9 @@
+import styles from './Profile.module.css';
+
+
 export const Profile = () => {
-    return <section className="content">
-        <div className="content-bgc-img">
+    return <section className={styles._}>
+        <div className={styles._themePicture}>
             <img src="https://million-wallpapers.ru/wallpapers/4/14/17345193607846010880/ozero-potajnoe.jpg" alt=""/>
         </div>
         <div>

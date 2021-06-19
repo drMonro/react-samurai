@@ -13,34 +13,3 @@ img {
     grid-template-columns: 2fr 10fr;
     /*grid-gap: 10px;*/
 }
-
-.header {
-    grid-area: header;
-    background-color: green;
-}
-
-.navigation {
-    grid-area: navigation;
-    background-color: cornsilk;
-}
-
-.navigation-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.content {
-    grid-area: content;
-    background-color: cornflowerblue;
-}
-
-.content-bgc-img {
-    height: 190px;
-}
-
-.content-bgc-img img {
-    object-fit: fill;
-    width: 100%;
-    object-position: 50% 0;
-}
