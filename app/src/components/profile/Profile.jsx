@@ -12,7 +12,7 @@ export const Profile = () => {
         <div>
             <p>My posts</p>
             <form>
-                <p><input type="text-area"/></p>;
+                <p><input type="text-area"/></p>
                 <button type="submit">Send</button>
             </form>
             <Posts />
