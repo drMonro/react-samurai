@@ -1,4 +1,5 @@
 import styles from './Dialogs.module.css';
+import {NavLink} from "react-router-dom";
 
 export const Dialogs = () => {
     return (
@@ -6,10 +7,18 @@ export const Dialogs = () => {
             <p>Dialogs</p>
             <div className={styles._wrapper}>
                 <ul className={styles._recipientsList}>
-                    <li className={styles._recipient}><a href="#">Olga</a></li>
-                    <li className={styles._recipient}><a href="#">Toha</a></li>
-                    <li className={styles._recipient}><a href="#">Alex</a></li>
-                    <li className={styles._recipient}><a href="#">Marta</a></li>
+                    <li className={styles._recipient}>
+                        <NavLink to="/dialogs/1">Olga</NavLink>
+                    </li>
+                    <li className={styles._recipient}>
+                        <NavLink to="/dialogs/2">Toha</NavLink>
+                    </li>
+                    <li className={styles._recipient}>
+                        <NavLink to="/dialogs/3">Alex</NavLink>
+                    </li>
+                    <li className={styles._recipient}>
+                        <NavLink to="/dialogs/4">Marta</NavLink>
+                    </li>
                 </ul>
 
                 <ul className={styles._dialogHistory}>

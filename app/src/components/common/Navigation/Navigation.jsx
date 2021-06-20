@@ -11,10 +11,6 @@ export const Navigation = () => {
             <li className={styles._linkItem}>
                 <NavLink to="/dialogs" activeClassName={styles._linkActive}>Messages</NavLink>
             </li>
-
-            {/*<li><a href="#">News</a></li>*/}
-            {/*<li><a href="#">Music</a></li>*/}
-            {/*<li><a href="#">Settings</a></li>*/}
         </ul>
     </nav>
 }
