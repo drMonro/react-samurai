@@ -1,5 +1,5 @@
 import styles from './Profile.module.css';
-
+import Posts from "./Posts/Posts";
 
 export const Profile = () => {
     return <section className={styles._}>
@@ -15,11 +15,7 @@ export const Profile = () => {
                 <p><input type="text-area"/></p>;
                 <button type="submit">Send</button>
             </form>
-            <ul>
-                <li>Hey!</li>
-                <li>What's up</li>
-                <li>Peace!</li>
-            </ul>
+            <Posts />
         </div>
     </section>
 }

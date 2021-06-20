@@ -1,8 +1,8 @@
 import './App.css';
-import './views/profile/Profile.module.css';
-import Header from "./views/common/Header";
-import Navigation from "./views/common/Navigation";
-import Profile from "./views/profile/Profile";
+import './components/profile/Profile.module.css';
+import Header from "./components/common/Header/Header";
+import Navigation from "./components/common/Navigation/Navigation";
+import Profile from "./components/profile/Profile";
 
 const App = () => {
     return (
