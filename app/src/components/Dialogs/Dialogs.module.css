@@ -7,28 +7,3 @@
     display: flex;
 }
 
-._recipientsList {
-    width: 25%;
-}
-
-._recipient {
-    padding: 20px;
-}
-
-._dialogHistory {
-    list-style: none;
-}
-
-._dialogItem {
-    display: flex;
-}
-
-
-._dialogItem p {
-    margin: 0;
-    margin-bottom: 30px;
-}
-
-._authorBlock {
-    margin-right: 25px;
-}

@@ -1,21 +1,16 @@
 import styles from './Profile.module.css';
 import Posts from "./Posts/Posts";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import PostSubmit from "./PostSubmit/PostSubmit";
 
 export const Profile = () => {
     return <section className={styles._}>
-        <div className={styles._themePicture}>
-            <img src="https://million-wallpapers.ru/wallpapers/4/14/17345193607846010880/ozero-potajnoe.jpg" alt=""/>
-        </div>
-        <div>
-            ava + descr
-        </div>
+        <ProfileInfo/>
+
         <div>
             <p>My posts</p>
-            <form>
-                <p><input type="text-area"/></p>
-                <button type="submit">Send</button>
-            </form>
-            <Posts />
+            <PostSubmit/>
+            <Posts/>
         </div>
     </section>
 }

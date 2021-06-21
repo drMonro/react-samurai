@@ -1,0 +1,9 @@
+._themePicture {
+    height: 190px;
+}
+
+._themePicture img {
+    object-fit: fill;
+    width: 100%;
+    object-position: 50% 0;
+}
