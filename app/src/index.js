@@ -16,10 +16,17 @@ const messagesData = [
     {message: 'Lorem ipsum dolor sit amet, consectetur adipisicing.'},
 ]
 
+const recipientsData = [
+    {id: 1, name: 'Olga'},
+    {id: 2, name: 'Toha'},
+    {id: 3, name: 'Alex'},
+    {id: 4, name: 'Marta'},
+]
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App postsData={postsData} messagesData={messagesData}/>
+    <App postsData={postsData} messagesData={messagesData} recipientsData={recipientsData}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
