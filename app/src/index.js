@@ -4,9 +4,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const postsData = [
+    {message: 'Hello!'},
+    {message: 'Hi!'},
+    {message: "What's up!"},
+]
+
+const messagesData = [
+    {message: 'Lorem ipsum dolor sit amet, consectetur adipisicing.'},
+    {message: 'Lorem ipsum dolor sit amet.'},
+    {message: 'Lorem ipsum dolor sit amet, consectetur adipisicing.'},
+]
+
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App postsData={postsData} messagesData={messagesData}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

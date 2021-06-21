@@ -1,16 +1,9 @@
 import styles from './Posts.module.css';
 import Post from "../Post/Post";
 
-export const Posts = () => {
-    const postsData = [
-        {message: 'Hello!'},
-        {message: 'Hi!'},
-        {message: "What's up!"},
-    ]
-
+export const Posts = ({postsData}) => {
     const postsElements = postsData
         .map(({message}) => <Post message={message}/>)
-
 
     return (
         <ul className={styles._}>

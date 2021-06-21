@@ -2,13 +2,13 @@ import styles from './Dialogs.module.css';
 import Recipients from "./Recipients/Recipients";
 import DialogHistory from "./DialogHistory/DialogHistory";
 
-export const Dialogs = () => {
+export const Dialogs = ({messagesData}) => {
     return (
         <section className={styles._}>
             <p>Dialogs</p>
             <div className={styles._wrapper}>
                 <Recipients/>
-                <DialogHistory/>
+                <DialogHistory messagesData={messagesData}/>
             </div>
         </section>)
 }
