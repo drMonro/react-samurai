@@ -3,30 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import state from "./redux/state";
 
-const postsData = [
-    {message: 'Hello!'},
-    {message: 'Hi!'},
-    {message: "What's up!"},
-]
-
-const messagesData = [
-    {message: 'Lorem ipsum dolor sit amet, consectetur adipisicing.'},
-    {message: 'Lorem ipsum dolor sit amet.'},
-    {message: 'Lorem ipsum dolor sit amet, consectetur adipisicing.'},
-]
-
-const recipientsData = [
-    {id: 1, name: 'Olga'},
-    {id: 2, name: 'Toha'},
-    {id: 3, name: 'Alex'},
-    {id: 4, name: 'Marta'},
-]
-
-
+// const {profilePage, dialogsPage} = state;
+// console.log(state)
 ReactDOM.render(
   <React.StrictMode>
-    <App postsData={postsData} messagesData={messagesData} recipientsData={recipientsData}/>
+    <App state={state}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

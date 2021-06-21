@@ -3,7 +3,8 @@ import Posts from "./Posts/Posts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import PostSubmit from "./PostSubmit/PostSubmit";
 
-export const Profile = ({postsData}) => {
+export const Profile = ({state}) => {
+    const {postsData} = state;
     return <section className={styles._}>
         <ProfileInfo/>
 

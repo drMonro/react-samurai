@@ -2,7 +2,8 @@ import styles from './Dialogs.module.css';
 import Recipients from "./Recipients/Recipients";
 import DialogHistory from "./DialogHistory/DialogHistory";
 
-export const Dialogs = ({messagesData, recipientsData}) => {
+export const Dialogs = ({state}) => {
+    const {messagesData, recipientsData} = state;
     return (
         <section className={styles._}>
             <p>Dialogs</p>
