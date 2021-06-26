@@ -1,3 +1,5 @@
+import {rerenderDOM} from "../render";
+
 const state = {
     profilePage: {
         postsData: [
@@ -22,12 +24,11 @@ const state = {
 }
 
 export const submitPost = (postMessage) => {
-    // event.preventDefault();
     const newPost = {
         message: postMessage,
     };
     state.profilePage.postsData.push(newPost);
-    console.log(state);
+    rerenderDOM(state);
 }
 
 export default state;
