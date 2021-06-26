@@ -1,18 +1,22 @@
 import React from "react";
 
-export const PostSubmit = ({submitPost}) => {
+export const PostSubmit = ({newPostText, submitPost, updateNewPostText}) => {
     const newPostData = React.createRef();
 
     const postSubmit = (evt) => {
         evt.preventDefault();
-        const text = newPostData.current.value;
-        submitPost(text);
+        submitPost();
     }
 
+    const onPostChange = () => {
+        const text = newPostData.current.value;
+        updateNewPostText(text);
+    }
     return (
+
         <form>
-            <textarea ref={newPostData}/>
-            <button onClick={postSubmit}>Send</button>
+            <textarea onChange={onPostChange} ref={newPostData} value={newPostText}/>
+            <button onClick={postSubmit}  value={newPostText}>Send</button>
         </form>)
 }
 

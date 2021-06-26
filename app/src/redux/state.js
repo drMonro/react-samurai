@@ -7,6 +7,7 @@ const state = {
             {message: 'Hi!'},
             {message: "What's up!"},
         ],
+        newPostText: ''
     },
     dialogsPage: {
         messagesData : [
@@ -23,12 +24,19 @@ const state = {
     },
 }
 
-export const submitPost = (postMessage) => {
+export const submitPost = () => {
     const newPost = {
-        message: postMessage,
+        message: state.profilePage.newPostText,
     };
     state.profilePage.postsData.push(newPost);
+    state.profilePage.newPostText = '';
     rerenderDOM(state);
 }
+
+export const updateNewPostText = (newText) => {
+    state.profilePage.newPostText =  newText;
+    rerenderDOM(state);
+}
+
 
 export default state;

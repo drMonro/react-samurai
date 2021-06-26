@@ -5,15 +5,18 @@ import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
 import Navigation from "./components/common/Navigation/Navigation";
+import {updateNewPostText} from "./redux/state";
 
 const App = ({state, submitPost}) => {
     const {profilePage, dialogsPage} = state;
-
     return (
         <div className="app-wrapper">
             <Header/>
             <Navigation/>
-            <Route path='/profile' render={() => <Profile state={profilePage} submitPost={submitPost}/>}/>
+            <Route path='/profile' render={() => <Profile
+                state={profilePage}
+                submitPost={submitPost}
+                updateNewPostText={updateNewPostText}/>}/>
             <Route path='/dialogs' render={() => <Dialogs state={dialogsPage}/>}/>
 
         </div>
