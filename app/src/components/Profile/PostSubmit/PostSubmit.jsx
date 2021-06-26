@@ -1,16 +1,16 @@
 import React from "react";
 
-export const PostSubmit = ({newPostText, submitPost, updateNewPostText}) => {
+export const PostSubmit = ({newPostText, dispatch}) => {
     const newPostData = React.createRef();
 
     const postSubmit = (evt) => {
         evt.preventDefault();
-        submitPost();
+        dispatch({type: 'SUBMIT-POST'})
     }
 
     const onPostChange = () => {
         const text = newPostData.current.value;
-        updateNewPostText(text);
+        dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text})
     }
     return (
 

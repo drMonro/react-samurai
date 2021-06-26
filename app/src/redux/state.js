@@ -42,7 +42,18 @@ const store = {
     },
     subscribe(observer) {
         this._callSubscriber = observer;
-    }
+    },
+
+    dispatch(action) {
+        switch (action.type) {
+            case 'SUBMIT-POST':
+                this.submitPost();
+                break;
+            case 'UPDATE-NEW-POST-TEXT':
+                this.updateNewPostText(action.newText);
+                break;
+        }
+    },
 }
 
 

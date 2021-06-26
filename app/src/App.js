@@ -6,16 +6,14 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
 import Navigation from "./components/common/Navigation/Navigation";
 
-const App = ({state, submitPost, updateNewPostText}) => {
+const App = ({state, dispatch}) => {
     const {profilePage, dialogsPage} = state;
     return (
         <div className="app-wrapper">
             <Header/>
             <Navigation/>
-            <Route path='/profile' render={() => <Profile
-                state={profilePage}
-                submitPost={submitPost}
-                updateNewPostText={updateNewPostText}/>}/>
+            <Route path='/profile' render={() => <Profile state={profilePage}
+                dispatch={dispatch}/>}/>
             <Route path='/dialogs' render={() => <Dialogs state={dialogsPage}/>}/>
 
         </div>

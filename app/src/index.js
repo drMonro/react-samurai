@@ -10,8 +10,7 @@ export const rerenderDOM = (state) => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App state={state} submitPost={store.submitPost.bind(store)}
-                     updateNewPostText={store.updateNewPostText.bind(store)}/>
+                <App state={state} dispatch={store.dispatch.bind(store)}/>
             </BrowserRouter>
         </React.StrictMode>, document.getElementById('root')
     );
