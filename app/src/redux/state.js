@@ -1,4 +1,6 @@
-import {rerenderDOM} from "../render";
+let rerenderDOM = () => {
+    console.log('State imposed')
+}
 
 const state = {
     profilePage: {
@@ -36,6 +38,10 @@ export const submitPost = () => {
 export const updateNewPostText = (newText) => {
     state.profilePage.newPostText =  newText;
     rerenderDOM(state);
+}
+
+export const subscribe = (observer) => {
+    rerenderDOM = observer;
 }
 
 

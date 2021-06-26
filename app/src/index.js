@@ -1,5 +1,27 @@
-import {rerenderDOM} from "./render";
-import state from "./redux/state";
+import state, {subscribe} from "./redux/state";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import {submitPost} from "./redux/state";
+import {BrowserRouter} from "react-router-dom";
+
+export const rerenderDOM = (state) => {
+    ReactDOM.render(
+        <React.StrictMode>
+            <BrowserRouter>
+                <App state={state} submitPost={submitPost}/>
+            </BrowserRouter>
+        </React.StrictMode>, document.getElementById('root')
+    );
+}
 
 rerenderDOM(state)
 
+subscribe(rerenderDOM);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
