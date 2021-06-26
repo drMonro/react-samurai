@@ -5,9 +5,8 @@ import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
 import Navigation from "./components/common/Navigation/Navigation";
-import {updateNewPostText} from "./redux/state";
 
-const App = ({state, submitPost}) => {
+const App = ({state, submitPost, updateNewPostText}) => {
     const {profilePage, dialogsPage} = state;
     return (
         <div className="app-wrapper">
