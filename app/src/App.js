@@ -1,25 +1,22 @@
 import './App.css';
 import './components/Profile/Profile.module.css';
 import Header from "./components/common/Header/Header";
-import Navigation from "./components/common/Navigation/Navigation";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route} from "react-router-dom";
+import Navigation from "./components/common/Navigation/Navigation";
 
-const App = ({state}) => {
+const App = ({state, submitPost}) => {
     const {profilePage, dialogsPage} = state;
 
     return (
-        <BrowserRouter>
-            <div className="app-wrapper">
-                <Header/>
-                <Navigation/>
+        <div className="app-wrapper">
+            <Header/>
+            <Navigation/>
+            <Route path='/profile' render={() => <Profile state={profilePage} submitPost={submitPost}/>}/>
+            <Route path='/dialogs' render={() => <Dialogs state={dialogsPage}/>}/>
 
-                <Route path='/profile' render={() => <Profile state={profilePage}/>}/>
-                <Route path='/dialogs' render={() => <Dialogs state={dialogsPage}/>}/>
-
-            </div>
-        </BrowserRouter>
+        </div>
     );
 }
 

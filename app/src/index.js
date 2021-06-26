@@ -3,15 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import state from "./redux/state";
+import state, {submitPost} from "./redux/state";
+import {BrowserRouter} from "react-router-dom";
 
-// const {profilePage, dialogsPage} = state;
-// console.log(state)
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App state={state}/>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <BrowserRouter>
+            <App state={state} submitPost={submitPost}/>
+        </BrowserRouter>
+
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

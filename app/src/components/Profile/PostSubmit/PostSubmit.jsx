@@ -1,10 +1,12 @@
 import React from "react";
 
-export const PostSubmit = () => {
+export const PostSubmit = ({submitPost}) => {
     const newPostData = React.createRef();
-    const postSubmit = () => {
+
+    const postSubmit = (evt) => {
+        evt.preventDefault();
         const text = newPostData.current.value;
-        alert(text)
+        submitPost(text);
     }
 
     return (

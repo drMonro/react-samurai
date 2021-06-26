@@ -21,4 +21,13 @@ const state = {
     },
 }
 
+export const submitPost = (postMessage) => {
+    // event.preventDefault();
+    const newPost = {
+        message: postMessage,
+    };
+    state.profilePage.postsData.push(newPost);
+    console.log(state);
+}
+
 export default state;
