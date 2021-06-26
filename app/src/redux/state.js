@@ -1,3 +1,6 @@
+const SUBMIT_POST = 'SUBMIT-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+
 const store = {
     _state: {
         profilePage: {
@@ -54,7 +57,20 @@ const store = {
                 break;
         }
     },
-}
+};
+
+export const submitPostActionCreator = () => {
+    return {
+        type: SUBMIT_POST,
+    }
+};
+
+export const updateNewPostTextActionCreator = (newPostText) => {
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: newPostText,
+    }
+};
 
 
 export default store;

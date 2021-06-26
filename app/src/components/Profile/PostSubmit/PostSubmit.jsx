@@ -1,22 +1,23 @@
 import React from "react";
+import {submitPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/state";
 
 export const PostSubmit = ({newPostText, dispatch}) => {
     const newPostData = React.createRef();
 
     const postSubmit = (evt) => {
         evt.preventDefault();
-        dispatch({type: 'SUBMIT-POST'})
+        dispatch(submitPostActionCreator())
     }
 
     const onPostChange = () => {
         const text = newPostData.current.value;
-        dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: text})
+        dispatch(updateNewPostTextActionCreator(text))
     }
     return (
 
         <form>
             <textarea onChange={onPostChange} ref={newPostData} value={newPostText}/>
-            <button onClick={postSubmit}  value={newPostText}>Send</button>
+            <button onClick={postSubmit} value={newPostText}>Send</button>
         </form>)
 }
 
