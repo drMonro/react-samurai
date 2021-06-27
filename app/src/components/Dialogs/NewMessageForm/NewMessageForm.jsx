@@ -1,9 +1,10 @@
 import styles from './NewMessageForm.module.css';
-import {submitNewMessageActionCreator, updateNewMessageDataActionCreator, updateNewPostTextActionCreator} from "../../../redux/state";
+import {submitNewMessageActionCreator, updateNewMessageDataActionCreator} from "../../../redux/dialogs-reducer";
 
 export const NewMessageForm = ({dispatch, newMessage}) => {
     const onNewMessageChange = (evt) => {
         const newMessageData = evt.target.value;
+        // console.log(newMessageData)
         dispatch(updateNewMessageDataActionCreator(newMessageData))
     }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import {submitPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/state";
+import {submitPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
 
 export const PostSubmit = ({newPostText, dispatch}) => {
     const newPostData = React.createRef();
@@ -11,6 +11,7 @@ export const PostSubmit = ({newPostText, dispatch}) => {
 
     const onPostChange = () => {
         const text = newPostData.current.value;
+
         dispatch(updateNewPostTextActionCreator(text))
     }
     return (
