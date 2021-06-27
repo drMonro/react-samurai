@@ -1,7 +1,22 @@
 const SUBMIT_NEW_MESSAGE = 'SUBMIT_NEW_MESSAGE';
 const UPDATE_NEW_MESSAGE_DATA = 'UPDATE_NEW_MESSAGE_DATA';
 
-const dialogsReducer = (state, action) => {
+const initialState = {
+    newMessage: '',
+    messagesData: [
+        {message: 'Lorem ipsum dolor sit amet, consectetur adipisicing.'},
+        {message: 'Lorem ipsum dolor sit amet.'},
+        {message: 'Lorem ipsum dolor sit amet, consectetur adipisicing.'},
+    ],
+    recipientsData: [
+        {id: 1, name: 'Olga'},
+        {id: 2, name: 'Toha'},
+        {id: 3, name: 'Alex'},
+        {id: 4, name: 'Marta'},
+    ],
+}
+
+const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_DATA:
             state.newMessage = action.newMessageData;

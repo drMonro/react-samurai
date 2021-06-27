@@ -1,7 +1,16 @@
 const SUBMIT_POST = 'SUBMIT_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 
-const profileReducer = (state, action) => {
+const initialState = {
+    postsData: [
+        {message: 'Hello!'},
+        {message: 'Hi!'},
+        {message: "What's up!"},
+    ],
+    newPostText: ''
+}
+
+const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_NEW_POST_TEXT:
             state.newPostText = action.newPostData;
