@@ -1,5 +1,7 @@
 const SUBMIT_POST = 'SUBMIT-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const SUBMIT_NEW_MESSAGE = 'SUBMIT-NEW-MESSAGE';
+const UPDATE_NEW_MESSAGE_DATA = 'UPDATE-NEW-MESSAGE-DATA';
 
 const store = {
     _state: {
@@ -12,6 +14,7 @@ const store = {
             newPostText: ''
         },
         dialogsPage: {
+            newMessage: '',
             messagesData: [
                 {message: 'Lorem ipsum dolor sit amet, consectetur adipisicing.'},
                 {message: 'Lorem ipsum dolor sit amet.'},
@@ -43,6 +46,18 @@ const store = {
         this._state.profilePage.newPostText = newText;
         this._callSubscriber(this._state);
     },
+    submitNewMessage() {
+        const newMessage = {
+            message: this._state.dialogsPage.newMessage,
+        };
+        this._state.dialogsPage.messagesData.push(newMessage);
+        this._state.dialogsPage.newMessage = '';
+        this._callSubscriber(this._state);
+    },
+    updateNewMessageData(newData) {
+        this._state.dialogsPage.newMessage = newData;
+        this._callSubscriber(this._state);
+    },
     subscribe(observer) {
         this._callSubscriber = observer;
     },
@@ -54,6 +69,14 @@ const store = {
                 break;
             case 'UPDATE-NEW-POST-TEXT':
                 this.updateNewPostText(action.newText);
+                break;
+            case 'SUBMIT-NEW-MESSAGE':
+                this.submitNewMessage();
+                break;
+            case 'UPDATE-NEW-MESSAGE-DATA':
+                this.updateNewMessageData(action.messageData);
+                break;
+            default:
                 break;
         }
     },
@@ -69,6 +92,19 @@ export const updateNewPostTextActionCreator = (newPostText) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
         newText: newPostText,
+    }
+};
+
+export const submitNewMessageActionCreator = () => {
+    return {
+        type: SUBMIT_NEW_MESSAGE,
+    }
+};
+
+export const updateNewMessageDataActionCreator = (newMessageData) => {
+    return {
+        type: UPDATE_NEW_MESSAGE_DATA,
+        messageData: newMessageData,
     }
 };
 

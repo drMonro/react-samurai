@@ -13,8 +13,9 @@ const App = ({state, dispatch}) => {
             <Header/>
             <Navigation/>
             <Route path='/profile' render={() => <Profile state={profilePage}
-                dispatch={dispatch}/>}/>
-            <Route path='/dialogs' render={() => <Dialogs state={dialogsPage}/>}/>
+                                                          dispatch={dispatch}/>}/>
+            <Route path='/dialogs' render={() => <Dialogs state={dialogsPage}
+                                                          dispatch={dispatch}/>}/>
 
         </div>
     );
