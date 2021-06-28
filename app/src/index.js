@@ -6,20 +6,20 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 
-export const rerenderDOM = (state) => {
+export const rerenderDOM = (store) => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App state={state} dispatch={store.dispatch.bind(store)}/>
+                <App store={store}/>
             </BrowserRouter>
         </React.StrictMode>, document.getElementById('root')
     );
 }
 
-rerenderDOM(store.getState())
+rerenderDOM(store);
 
 store.subscribe(() => {
-    rerenderDOM(store.getState())
+    rerenderDOM(store);
 });
 
 // If you want to start measuring performance in your app, pass a function

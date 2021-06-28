@@ -1,25 +1,22 @@
 import React from "react";
 import {submitPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
 
-export const PostSubmit = ({newPostText, dispatch}) => {
-    const newPostData = React.createRef();
-
+export const PostSubmit = ({updatePostText, submitPost, newPostText}) => {
     const postSubmit = (evt) => {
         evt.preventDefault();
-        dispatch(submitPostActionCreator())
-    }
+        submitPost();
+    };
 
-    const onPostChange = () => {
-        const text = newPostData.current.value;
+    const onPostChange = (evt) => {
+        const text = evt.target.value;
+        updatePostText(text);
+    };
 
-        dispatch(updateNewPostTextActionCreator(text))
-    }
     return (
-
         <form>
-            <textarea onChange={onPostChange} ref={newPostData} value={newPostText}/>
+            <textarea onChange={onPostChange} value={newPostText}/>
             <button onClick={postSubmit} value={newPostText}>Send</button>
-        </form>)
+        </form>);
 }
 
 export default PostSubmit;

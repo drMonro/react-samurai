@@ -1,16 +1,15 @@
 import styles from './NewMessageForm.module.css';
-import {submitNewMessageActionCreator, updateNewMessageDataActionCreator} from "../../../redux/dialogs-reducer";
 
-export const NewMessageForm = ({dispatch, newMessage}) => {
+export const NewMessageForm = ({updateNewMessageText, submitNewMessage, newMessage}) => {
     const onNewMessageChange = (evt) => {
         const newMessageData = evt.target.value;
-        // console.log(newMessageData)
-        dispatch(updateNewMessageDataActionCreator(newMessageData))
-    }
+        updateNewMessageText(newMessageData);
+    };
 
-    const onNewMessageSubmit = () => {
-        dispatch(submitNewMessageActionCreator())
-    }
+    const onNewMessageSubmit = (evt) => {
+        evt.preventDefault();
+        submitNewMessage();
+    };
 
     return (
         <div className={styles._}>
@@ -19,7 +18,7 @@ export const NewMessageForm = ({dispatch, newMessage}) => {
                 <button onClick={onNewMessageSubmit}>Send message</button>
             </p>
         </div>
-    )
-}
+    );
+};
 
 export default NewMessageForm;

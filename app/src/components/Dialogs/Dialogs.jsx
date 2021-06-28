@@ -1,10 +1,10 @@
 import styles from './Dialogs.module.css';
 import Recipients from "./Recipients/Recipients";
 import DialogHistory from "./DialogHistory/DialogHistory";
-import NewMessageForm from "./NewMessageForm/NewMessageForm";
+import NewMessageFormContainer from "./NewMessageForm/NewMessageFormContainer";
 
-export const Dialogs = ({state, dispatch}) => {
-    const {messagesData, recipientsData, newMessage} = state;
+export const Dialogs = ({store}) => {
+    const {dialogsPage: {recipientsData, newMessage, messagesData}} = store.getState();
     return (
         <section className={styles._}>
             <p>Dialogs</p>
@@ -12,10 +12,10 @@ export const Dialogs = ({state, dispatch}) => {
                 <Recipients recipientsData={recipientsData}/>
                 <div className={styles._container}>
                     <DialogHistory messagesData={messagesData}/>
-                    <NewMessageForm dispatch={dispatch} newMessage={newMessage}/>
+                    <NewMessageFormContainer newMessage={newMessage} store={store}/>
                 </div>
             </div>
-        </section>)
-}
+        </section>);
+};
 
 export default Dialogs;

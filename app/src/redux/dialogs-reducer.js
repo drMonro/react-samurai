@@ -36,14 +36,14 @@ const dialogsReducer = (state = initialState, action) => {
 export const submitNewMessageActionCreator = () => {
     return {
         type: SUBMIT_NEW_MESSAGE,
-    }
+    };
 };
 
 export const updateNewMessageDataActionCreator = (newMessageData) => {
     return {
         type: UPDATE_NEW_MESSAGE_DATA,
         newMessageData: newMessageData,
-    }
+    };
 };
 
 export default dialogsReducer;
