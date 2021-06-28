@@ -3,7 +3,7 @@ import Recipients from "./Recipients/Recipients";
 import DialogHistory from "./DialogHistory/DialogHistory";
 import NewMessageFormContainer from "./NewMessageForm/NewMessageFormContainer";
 
-export const Dialogs = ({store, recipientsData, newMessage, messagesData}) => {
+export const Dialogs = ({recipientsData, newMessage, messagesData, onNewMessageChange, onNewMessageSubmit}) => {
     return (
         <section className={styles._}>
             <p>Dialogs</p>
@@ -11,7 +11,9 @@ export const Dialogs = ({store, recipientsData, newMessage, messagesData}) => {
                 <Recipients recipientsData={recipientsData}/>
                 <div>
                     <DialogHistory messagesData={messagesData}/>
-                    <NewMessageFormContainer newMessage={newMessage} store={store}/>
+                    <NewMessageFormContainer newMessage={newMessage}
+                                             onNewMessageChange={onNewMessageChange}
+                                             onNewMessageSubmit={onNewMessageSubmit}/>
                 </div>
             </div>
         </section>);

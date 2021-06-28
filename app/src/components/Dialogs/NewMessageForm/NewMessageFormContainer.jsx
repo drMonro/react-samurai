@@ -1,18 +1,18 @@
 import NewMessageForm from "./NewMessageForm";
-import {submitNewMessageActionCreator, updateNewMessageDataActionCreator} from "../../../redux/dialogs-reducer";
 
-const NewMessageFormContainer = ({store, newMessage}) => {
+const NewMessageFormContainer = ({newMessage, onNewMessageChange, onNewMessageSubmit}) => {
 
-    const onMessageSubmit = () => {
-        store.dispatch(submitNewMessageActionCreator())
+    const submitNewMessage = (evt) => {
+        evt.preventDefault();
+        onNewMessageSubmit();
     };
 
-    const onNewMessageChange = (text) => {
-        store.dispatch(updateNewMessageDataActionCreator(text))
+    const updateNewMessageText = (text) => {
+        onNewMessageChange(text);
     };
 
-    return <NewMessageForm updateNewMessageText={onNewMessageChange}
-                           submitNewMessage={onMessageSubmit}
+    return <NewMessageForm updateNewMessageText={updateNewMessageText}
+                           submitNewMessage={submitNewMessage}
                            newMessage={newMessage}/>
 };
 

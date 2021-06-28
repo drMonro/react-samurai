@@ -1,15 +1,13 @@
 import PostSubmit from "./PostSubmit";
-import {submitPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
 
-const PostSubmitContainer = ({store, newPostText}) => {
-    const onPostSubmit = () => {
-        store.dispatch(submitPostActionCreator())
+const PostSubmitContainer = ({onPostChange, onPostSubmit, newPostText}) => {
+    const submitPost = () => {
+        onPostSubmit()
     }
-
-    const onPostChange = (text) => {
-        store.dispatch(updateNewPostTextActionCreator(text))
+    const updatePostText = (text) => {
+        onPostChange(text);
     }
-    return <PostSubmit updatePostText={onPostChange} submitPost={onPostSubmit}
+    return <PostSubmit updatePostText={updatePostText} submitPost={submitPost}
                        newPostText={newPostText}/>
 }
 

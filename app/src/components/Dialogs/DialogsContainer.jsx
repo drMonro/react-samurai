@@ -1,17 +1,28 @@
-import StoreContext from "../../StoreContext";
 import Dialogs from "./Dialogs";
+import {submitPostActionCreator, updateNewPostTextActionCreator} from "../../redux/profile-reducer";
+import {connect} from "react-redux";
 
-const DialogsContainer = () => {
-    return (
-        <StoreContext.Consumer>
-            {store => {
-                const {dialogsPage: {recipientsData, newMessage, messagesData}} = store.getState();
-                return <Dialogs store={store}
-                                recipientsData={recipientsData}
-                                newMessage={newMessage}
-                                messagesData={messagesData}/>;
-            }}
-        </StoreContext.Consumer>);
-}
+
+const mapStateToProps = (state) => {
+    const {dialogsPage: {recipientsData, newMessage, messagesData}} = state;
+    return {
+        recipientsData: recipientsData,
+        newMessage: newMessage,
+        messagesData: messagesData,
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onNewMessageChange: (text) => {
+            dispatch(updateNewPostTextActionCreator(text))
+        },
+        onNewMessageSubmit: () => {
+            dispatch(submitPostActionCreator())
+        },
+    }
+};
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;
