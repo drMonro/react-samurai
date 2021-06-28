@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 
-export const rerenderDOM = (store) => {
+export const rerenderDOM = () => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
@@ -19,10 +19,10 @@ export const rerenderDOM = (store) => {
     );
 }
 
-rerenderDOM(store);
+rerenderDOM();
 
 store.subscribe(() => {
-    rerenderDOM(store);
+    rerenderDOM();
 });
 
 // If you want to start measuring performance in your app, pass a function

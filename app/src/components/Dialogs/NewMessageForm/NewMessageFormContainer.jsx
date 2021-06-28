@@ -2,8 +2,7 @@ import NewMessageForm from "./NewMessageForm";
 
 const NewMessageFormContainer = ({newMessage, onNewMessageChange, onNewMessageSubmit}) => {
 
-    const submitNewMessage = (evt) => {
-        evt.preventDefault();
+    const submitNewMessage = () => {
         onNewMessageSubmit();
     };
 

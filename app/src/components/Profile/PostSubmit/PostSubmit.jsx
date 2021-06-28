@@ -1,5 +1,4 @@
 import React from "react";
-import {submitPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
 
 export const PostSubmit = ({updatePostText, submitPost, newPostText}) => {
     const postSubmit = (evt) => {

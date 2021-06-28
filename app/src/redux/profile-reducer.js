@@ -3,9 +3,9 @@ const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 
 const initialState = {
     postsData: [
-        {message: 'Hello!'},
-        {message: 'Hi!'},
-        {message: "What's up!"},
+        {message: 'Hello!', id: 1},
+        {message: 'Hi!', id: 2},
+        {message: "What's up!", id: 3},
     ],
     newPostText: ''
 }
@@ -13,15 +13,20 @@ const initialState = {
 const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newPostData;
-            return state;
+            return {
+                ...state,
+                newPostText: action.newPostData,
+            };
         case SUBMIT_POST:
             const newPost = {
                 message: state.newPostText,
+                id: 4,
             };
-            state.postsData.push(newPost);
-            state.newPostText = '';
-            return state;
+            return {
+                ...state,
+                newPostText: '',
+                postsData: [...state.postsData, newPost]
+            };
         default:
             return state;
     }

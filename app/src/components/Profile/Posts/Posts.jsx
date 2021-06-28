@@ -3,7 +3,7 @@ import Post from "../Post/Post";
 
 export const Posts = ({postsData}) => {
     const postsElements = postsData
-        .map(({message}) => <Post message={message}/>)
+        .map(({message, id}) => <Post message={message} key={id}/>)
 
     return (
         <ul className={styles._}>

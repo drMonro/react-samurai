@@ -1,6 +1,6 @@
 import Dialogs from "./Dialogs";
-import {submitPostActionCreator, updateNewPostTextActionCreator} from "../../redux/profile-reducer";
 import {connect} from "react-redux";
+import {submitNewMessageActionCreator, updateNewMessageDataActionCreator} from "../../redux/dialogs-reducer";
 
 
 const mapStateToProps = (state) => {
@@ -15,10 +15,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onNewMessageChange: (text) => {
-            dispatch(updateNewPostTextActionCreator(text))
+            dispatch(updateNewMessageDataActionCreator(text))
         },
         onNewMessageSubmit: () => {
-            dispatch(submitPostActionCreator())
+            dispatch(submitNewMessageActionCreator())
         },
     }
 };

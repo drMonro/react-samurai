@@ -4,7 +4,7 @@ import Recipient from "../Recipient/Recipient";
 export const Recipients = ({recipientsData}) => {
 
     const recipientsElements = recipientsData
-        .map(({id, name}) => <Recipient name={name} id={id}/>)
+        .map(({id, name}) => <Recipient name={name} key={id} id={id}/>)
 
     return (
         <ul className={styles._recipientsList}>

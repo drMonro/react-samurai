@@ -4,9 +4,18 @@ const UPDATE_NEW_MESSAGE_DATA = 'UPDATE_NEW_MESSAGE_DATA';
 const initialState = {
     newMessage: '',
     messagesData: [
-        {message: 'Lorem ipsum dolor sit amet, consectetur adipisicing.'},
-        {message: 'Lorem ipsum dolor sit amet.'},
-        {message: 'Lorem ipsum dolor sit amet, consectetur adipisicing.'},
+        {
+            message: 'Lorem ipsum dolor sit amet, consectetur adipisicing.',
+            id: 1,
+        },
+        {
+            message: 'Lorem ipsum dolor sit amet.',
+            id: 2,
+        },
+        {
+            message: 'Lorem ipsum dolor sit amet, consectetur adipisicing.',
+            id: 3,
+        },
     ],
     recipientsData: [
         {id: 1, name: 'Olga'},
@@ -17,17 +26,23 @@ const initialState = {
 }
 
 const dialogsReducer = (state = initialState, action) => {
+
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_DATA:
-            state.newMessage = action.newMessageData;
-            return state;
+            return {
+                ...state,
+                newMessage: action.newMessageData,
+            }
         case SUBMIT_NEW_MESSAGE:
             const newMessage = {
                 message: state.newMessage,
+                id: 4,
             };
-            state.messagesData.push(newMessage);
-            state.newMessage = '';
-            return state;
+            return {
+                ...state,
+                messagesData: [...state.messagesData, newMessage],
+                newMessage: '',
+            }
         default:
             return state;
     }
