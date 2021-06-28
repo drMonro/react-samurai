@@ -3,12 +3,10 @@ import Posts from "./Posts/Posts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import PostSubmitContainer from "./PostSubmit/PostSubmitContainer";
 
-export const Profile = ({store}) => {
-    const {profilePage: {postsData, newPostText}} = store.getState();
+export const Profile = ({store, newPostText, postsData}) => {
     return (
         <section className={styles._}>
             <ProfileInfo/>
-
             <div>
                 <p>My posts</p>
                 <PostSubmitContainer newPostText={newPostText} store={store}/>
@@ -16,6 +14,7 @@ export const Profile = ({store}) => {
             </div>
         </section>
     );
+
 }
 
 export default Profile;

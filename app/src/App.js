@@ -5,15 +5,17 @@ import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {Route} from "react-router-dom";
 import Navigation from "./components/common/Navigation/Navigation";
+import ProfileContainer from "./components/Profile/ProfileContainer";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-const App = ({store}) => {
+const App = () => {
 
     return (
         <div className="app-wrapper">
             <Header/>
             <Navigation/>
-            <Route path='/profile' render={() => <Profile store={store}/>}/>
-            <Route path='/dialogs' render={() => <Dialogs store={store}/>}/>
+            <Route path='/profile' render={() => <ProfileContainer />}/>
+            <Route path='/dialogs' render={() => <DialogsContainer />}/>
         </div>
     );
 }
