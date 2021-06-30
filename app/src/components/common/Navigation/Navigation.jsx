@@ -11,6 +11,9 @@ export const Navigation = () => {
             <li className={styles._linkItem}>
                 <NavLink to="/dialogs" activeClassName={styles._linkActive}>Messages</NavLink>
             </li>
+            <li className={styles._linkItem}>
+                <NavLink to="/users" activeClassName={styles._linkActive}>Users</NavLink>
+            </li>
         </ul>
     </nav>
 }
