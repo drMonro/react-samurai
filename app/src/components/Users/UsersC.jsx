@@ -5,22 +5,11 @@ import axios from "axios";
 
 
 class Users extends React.Component {
-    constructor(props) {
-        super(props);
-        // const {users, onFollow, setUsers} = props;
-        this.setUsers = props.setUsers;
+    componentDidMount() {
+        this.getUsers();
+    }
 
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then(({data}) => {
-                // console.log(data.items)
-                // console.log(adaptUserToClient(data.items))
-                this.setUsers(adaptUserToClient(data.items));
-            });
-
-
-        // this.users = props.users;
-        // this.onFollow = props.onFollow;
-
+    getUsers() {
         const adaptUserToClientMethod = (user) => {
             const adaptedUser = {
                 ...user,
@@ -35,13 +24,13 @@ class Users extends React.Component {
         };
 
 
-
-        // console.log(users)
-
-    };
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(({data}) => {
+                this.props.setUsers(adaptUserToClient(data.items));
+            });
+    }
 
     usersElements() {
-        console.log(this.users)
         return this.props.users.map(({name, id, isFollow, photoUrl, photos}) => <User name={name}
                                                                    isFollow={isFollow}
                                                                    key={id}
