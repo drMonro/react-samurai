@@ -5,7 +5,7 @@ import {Route} from "react-router-dom";
 import Navigation from "./components/common/Navigation/Navigation";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
+import UsersContainer from "./components/Users/UsersContainerClass";
 
 const App = () => {
     return (

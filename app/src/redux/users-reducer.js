@@ -5,7 +5,7 @@ const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 
 const initialState = {
     users: [],
-    pageSize: 4,
+    pageSize: 100,
     totalUserCount: 0,
     currentPage: 1,
 }

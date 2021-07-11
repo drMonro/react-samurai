@@ -1,49 +1,48 @@
+import React from "react";
 import styles from './Users.module.css';
 import User from "./User/User";
-import axios from "axios";
 
-export const Users = ({users, onFollow, setUsers}) => {
 
-    const getUsers = () => {
-        const adaptUserToClientMethod = (user) => {
-            const adaptedUser = {
-                ...user,
-                isFollow: user.followed,
-            };
-            delete adaptedUser.followed;
-            return adaptedUser;
-        };
+let Users = ({totalUserCount, pageSize, onPageChanged, currentPage, users, onFollow}) => {
 
-        const adaptUserToClient = (usersData) => {
-            return usersData.map(adaptUserToClientMethod);
-        };
+    const usersElements = () => users.map(({name, id, isFollow, photoUrl, photos}) => <User name={name}
+                                                                                            isFollow={isFollow}
+                                                                                            key={id}
+                                                                                            id={id}
+                                                                                            photos={photos}
+                                                                                            onFollow={onFollow}
+                                                                                            photoUrl={photoUrl}/>);
 
-        if (!users.length) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users')
-                .then(({data}) => {
-                    setUsers(adaptUserToClient(data.items));
-                })
+    const usersPagination = () => {
+        const pagesCount = Math.ceil(totalUserCount / pageSize);
+        let pages = [];
+
+        for (let i = 1; i <= pagesCount; i++) {
+            pages.push(i);
         }
+
+        return (
+            <ul className={styles._pagination}>
+                {pages.map(page => {
+                    return (
+                        <li onClick={() => onPageChanged(page)}
+                            className={currentPage === page ? styles._selectedPage : ''}
+                            key={page}>{page}
+                        </li>)
+                })}
+            </ul>
+        );
     };
 
-    const usersElements = users
-        .map(({name, id, isFollow, photoUrl, photos}) => <User name={name}
-                                                               isFollow={isFollow}
-                                                               key={id}
-                                                               id={id}
-                                                               photos={photos}
-                                                               onFollow={onFollow}
-                                                               photoUrl={photoUrl}/>)
     return (
         <section className={styles._}>
             <h1>Users</h1>
-            <button onClick={getUsers}>Get Users</button>
+            {usersPagination()}
             <ul className={styles._list}>
-                {usersElements}
+                {usersElements()}
             </ul>
         </section>
-    );
-
+    )
 }
 
 export default Users;
