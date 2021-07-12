@@ -1,9 +1,11 @@
 import React from "react";
 import styles from './Users.module.css';
 import User from "./User/User";
+import Preloader from "../common/Preloader/Preloader";
 
 
-let Users = ({totalUserCount, pageSize, onPageChanged, currentPage, users, onFollow}) => {
+
+let Users = ({totalUserCount, pageSize, onPageChanged, currentPage, users, onFollow, isFetching}) => {
 
     const usersElements = () => users.map(({name, id, isFollow, photoUrl, photos}) => <User name={name}
                                                                                             isFollow={isFollow}
@@ -21,16 +23,18 @@ let Users = ({totalUserCount, pageSize, onPageChanged, currentPage, users, onFol
             pages.push(i);
         }
 
-        return (
-            <ul className={styles._pagination}>
-                {pages.map(page => {
-                    return (
-                        <li onClick={() => onPageChanged(page)}
-                            className={currentPage === page ? styles._selectedPage : ''}
-                            key={page}>{page}
-                        </li>)
-                })}
-            </ul>
+        return (<>
+                {isFetching ? <Preloader/> : null}
+                <ul className={styles._pagination}>
+                    {pages.map(page => {
+                        return (
+                            <li onClick={() => onPageChanged(page)}
+                                className={currentPage === page ? styles._selectedPage : ''}
+                                key={page}>{page}
+                            </li>)
+                    })}
+                </ul>
+            </>
         );
     };
 
