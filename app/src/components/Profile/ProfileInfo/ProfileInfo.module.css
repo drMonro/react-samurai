@@ -7,3 +7,8 @@
     width: 100%;
     object-position: 50% 0;
 }
+
+._avatar img {
+    width: 200px;
+    height: 200px;
+}

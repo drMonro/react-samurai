@@ -3,7 +3,7 @@ import './components/Profile/Profile.module.css';
 import Header from "./components/common/Header/Header";
 import {Route} from "react-router-dom";
 import Navigation from "./components/common/Navigation/Navigation";
-import ProfileContainer from "./components/Profile/ProfileContainer";
+import ProfileContainerClass from "./components/Profile/ProfileContainerClass";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainerClass";
 
@@ -12,7 +12,7 @@ const App = () => {
         <div className="app-wrapper">
             <Header/>
             <Navigation/>
-            <Route path='/profile' render={() => <ProfileContainer />}/>
+            <Route path='/profile/:userId?' render={() => <ProfileContainerClass />}/>
             <Route path='/dialogs' render={() => <DialogsContainer />}/>
             <Route path='/users' render={() => <UsersContainer />}/>
         </div>

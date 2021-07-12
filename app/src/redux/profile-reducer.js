@@ -1,5 +1,6 @@
 const SUBMIT_POST = 'SUBMIT_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 const initialState = {
     postsData: [
@@ -7,7 +8,8 @@ const initialState = {
         {message: 'Hi!', id: 2},
         {message: "What's up!", id: 3},
     ],
-    newPostText: ''
+    newPostText: '',
+    profile: null,
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -27,21 +29,35 @@ const profileReducer = (state = initialState, action) => {
                 newPostText: '',
                 postsData: [...state.postsData, newPost]
             };
+
+        case SET_USER_PROFILE:
+            return {
+                ...state,
+                profile: action.userData,
+
+            };
         default:
             return state;
     }
 }
 
-export const submitPostActionCreator = () => {
+export const onPostSubmit = () => {
     return {
         type: SUBMIT_POST,
     }
 };
 
-export const updateNewPostTextActionCreator = (newPostText) => {
+export const setUserProfile = (userData) => {
+    return {
+        type: SET_USER_PROFILE,
+        userData,
+    }
+};
+
+export const onPostChange = (newPostData) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
-        newPostData: newPostText,
+        newPostData,
     }
 };
 
