@@ -4,8 +4,7 @@ import axios from "axios";
 import {setUserData} from "../../../redux/auth-reducer";
 import AuthStatus from "./AuthStatus";
 
-class AuthStatusContainer extends React.Component {
-
+class AuthStatusContainerC extends React.Component {
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})
             .then(({data}) => {
@@ -13,14 +12,12 @@ class AuthStatusContainer extends React.Component {
                     this.props.setUserData(data.data);
                 }
             });
-    };
+    }
 
     render() {
         return <AuthStatus {...this.props}/>
-    };
-};
-
-
+    }
+}
 
 const mapStateToProps = ({auth}) => {
     return {
@@ -32,5 +29,5 @@ const dispatchesList = {
     setUserData
 };
 
-export default connect(mapStateToProps, dispatchesList)(AuthStatusContainer);
+export default connect(mapStateToProps, dispatchesList)(AuthStatusContainerC);
 

@@ -6,15 +6,6 @@ import Preloader from "../common/Preloader/Preloader";
 
 
 let Users = ({totalUserCount, pageSize, onPageChanged, currentPage, users, onFollow, isFetching}) => {
-
-    const usersElements = () => users.map(({name, id, isFollow, photoUrl, photos}) => <User name={name}
-                                                                                            isFollow={isFollow}
-                                                                                            key={id}
-                                                                                            id={id}
-                                                                                            photos={photos}
-                                                                                            onFollow={onFollow}
-                                                                                            photoUrl={photoUrl}/>);
-
     const usersPagination = () => {
         const pagesCount = Math.ceil(totalUserCount / pageSize);
         let pages = [];
@@ -37,6 +28,14 @@ let Users = ({totalUserCount, pageSize, onPageChanged, currentPage, users, onFol
             </>
         );
     };
+
+    const usersElements = () => users.map(({name, id, isFollow, photoUrl, photos}) => <User name={name}
+                                                                                            isFollow={isFollow}
+                                                                                            key={id}
+                                                                                            id={id}
+                                                                                            photos={photos}
+                                                                                            onFollow={onFollow}
+                                                                                            photoUrl={photoUrl}/>);
 
     return (
         <section className={styles._}>

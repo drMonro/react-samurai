@@ -22,9 +22,11 @@ const usersReducer = (state = initialState, action) => {
         });
     };
 
+    const followedUsers = followUser(action.userId);
+
+
     switch (action.type) {
         case FOLLOW:
-            const followedUsers = followUser(action.userId);
             return {
                 ...state,
                 users: followedUsers,

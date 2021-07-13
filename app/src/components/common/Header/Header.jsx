@@ -1,5 +1,5 @@
 import styles from './Header.module.css';
-import AuthStatusContainer from "../AuthStatus/AuthStatusContainer";
+import AuthStatusContainer from "../AuthStatus/AuthStatusContainerC";
 
 export const Header = () => {
 

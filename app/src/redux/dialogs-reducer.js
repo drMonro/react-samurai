@@ -26,7 +26,10 @@ const initialState = {
 }
 
 const dialogsReducer = (state = initialState, action) => {
-
+    const newMessage = {
+        message: state.newMessage,
+        id: 4,
+    };
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_DATA:
             return {
@@ -34,10 +37,7 @@ const dialogsReducer = (state = initialState, action) => {
                 newMessage: action.newMessageData,
             }
         case SUBMIT_NEW_MESSAGE:
-            const newMessage = {
-                message: state.newMessage,
-                id: 4,
-            };
+
             return {
                 ...state,
                 messagesData: [...state.messagesData, newMessage],

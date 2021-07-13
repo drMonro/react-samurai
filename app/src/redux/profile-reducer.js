@@ -13,6 +13,11 @@ const initialState = {
 }
 
 const profileReducer = (state = initialState, action) => {
+    const newPost = {
+        message: state.newPostText,
+        id: 4,
+    };
+
     switch (action.type) {
         case UPDATE_NEW_POST_TEXT:
             return {
@@ -20,10 +25,6 @@ const profileReducer = (state = initialState, action) => {
                 newPostText: action.newPostData,
             };
         case SUBMIT_POST:
-            const newPost = {
-                message: state.newPostText,
-                id: 4,
-            };
             return {
                 ...state,
                 newPostText: '',
