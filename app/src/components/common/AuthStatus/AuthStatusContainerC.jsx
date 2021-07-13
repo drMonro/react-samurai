@@ -1,15 +1,14 @@
 import React from "react";
 import {connect} from "react-redux";
-import axios from "axios";
 import {setUserData} from "../../../redux/auth-reducer";
 import AuthStatus from "./AuthStatus";
+import {usersAPI} from "../../../api/api";
 
 class AuthStatusContainerC extends React.Component {
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true})
-            .then(({data}) => {
+            usersAPI.getAuth().then(({data}) => {
                 if (data.resultCode === 0) {
-                    this.props.setUserData(data.data);
+                    this.props.setUserData(data);
                 }
             });
     }
