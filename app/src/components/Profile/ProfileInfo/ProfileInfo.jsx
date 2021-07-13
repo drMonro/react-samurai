@@ -3,8 +3,7 @@ import userAvatar from '../../../assets/images/user-avatar.jpg'
 
 export const ProfileInfo = ({fullName, photos}) => {
     const isAvatar = (photo) => {
-        console.log(!!photo.large)
-        return !!photo.large ? photo.large  : userAvatar;
+        return !!photo.large ? photo.large : userAvatar;
     }
 
 

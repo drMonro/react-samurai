@@ -5,3 +5,11 @@
     justify-content: space-between;
     align-items: center;
 }
+
+._error {
+    color: red;
+}
+
+._success {
+    color: gold;
+}
