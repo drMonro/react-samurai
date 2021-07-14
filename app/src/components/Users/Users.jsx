@@ -5,7 +5,7 @@ import Preloader from "../common/Preloader/Preloader";
 
 
 
-let Users = ({totalUserCount, pageSize, onPageChanged, currentPage, users, onFollow, isFetching}) => {
+const Users = ({totalUserCount, pageSize, onPageChanged, currentPage, users, onFollow, isFetching, isFollowing, toggleFollowingStatus, inFollowingUsers}) => {
     const usersPagination = () => {
         const pagesCount = Math.ceil(totalUserCount / pageSize);
         let pages = [];
@@ -35,7 +35,10 @@ let Users = ({totalUserCount, pageSize, onPageChanged, currentPage, users, onFol
                                                                                             id={id}
                                                                                             photos={photos}
                                                                                             onFollow={onFollow}
-                                                                                            photoUrl={photoUrl}/>);
+                                                                                            photoUrl={photoUrl}
+                                                                                            isFollowing={isFollowing}
+                                                                                            inFollowingUsers={inFollowingUsers}
+                                                                                            toggleFollowingStatus={toggleFollowingStatus}/>);
 
     return (
         <section className={styles._}>

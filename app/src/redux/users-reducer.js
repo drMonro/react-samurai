@@ -3,6 +3,7 @@ const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const TOGGLE_IS_FOLLOWING = 'TOGGLE_IS_FOLLOWING';
 
 const initialState = {
     users: [],
@@ -10,6 +11,8 @@ const initialState = {
     totalUserCount: 0,
     currentPage: 1,
     isFetching: true,
+    isFollowing: false,
+    inFollowingUsers: [],
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -52,6 +55,14 @@ const usersReducer = (state = initialState, action) => {
                 ...state,
                 isFetching: action.isFetching,
             };
+
+        case TOGGLE_IS_FOLLOWING:
+            return {
+                ...state,
+                inFollowingUsers: action.isFollowing
+                    ? [...state.inFollowingUsers, action.userId]
+                    : state.inFollowingUsers.filter(id => id !== action.userId)
+            };
         default:
             return state;
     }
@@ -60,35 +71,43 @@ const usersReducer = (state = initialState, action) => {
 export const followUser = (userId) => {
     return {
         type: FOLLOW,
-        userId: userId,
+        userId,
     };
 };
 
 export const setUsers = (users) => {
     return {
         type: SET_USERS,
-        users: users,
+        users,
     };
 };
 
-export const setTotalUsersCount = (usersCount) => {
+export const setTotalUsersCount = (totalUserCount) => {
     return {
         type: SET_TOTAL_USERS_COUNT,
-        totalUserCount: usersCount,
+        totalUserCount,
     };
 };
 
-export const setCurrentPage = (pageNumber) => {
+export const setCurrentPage = (currentPage) => {
     return {
         type: SET_CURRENT_PAGE,
-        currentPage: pageNumber,
+        currentPage,
     };
 };
 
 export const toggleFetchingStatus = (isFetching) => {
     return {
         type: TOGGLE_IS_FETCHING,
-        isFetching: isFetching,
+        isFetching,
+    };
+};
+
+export const toggleFollowingStatus = (isFollowing, userId) => {
+    return {
+        type: TOGGLE_IS_FOLLOWING,
+        isFollowing,
+        userId,
     };
 };
 

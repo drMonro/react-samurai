@@ -10,7 +10,21 @@ const axiosInstance = axios.create({
 
 
 export const usersAPI = {
-    getUsers(pageSize, currentPage) {
+    followUser(id) {
+        return axiosInstance.post(`follow/${id}`)
+            .then(response => {
+                return response.data;
+            });
+    },
+
+    unFollowUser(id) {
+        return axiosInstance.delete(`follow/${id}`)
+            .then(response => {
+                return response.data;
+            });
+    },
+
+    getUsers(currentPage, pageSize) {
         return axiosInstance.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => {
                 return response.data;

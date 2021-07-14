@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import {followUser, setCurrentPage, setTotalUsersCount, setUsers, toggleFetchingStatus} from "../../redux/users-reducer";
+import {followUser, setCurrentPage, setTotalUsersCount, setUsers, toggleFetchingStatus, toggleFollowingStatus} from "../../redux/users-reducer";
 import React from "react";
 import Users from "./Users";
 import {usersAPI} from "../../api/api";
@@ -50,19 +50,24 @@ class UsersContainerClass extends React.Component {
                        totalUserCount={this.props.totalUserCount}
                        pageSize={this.props.pageSize}
                        currentPage={this.props.currentPage}
+                       toggleFollowingStatus={this.props.toggleFollowingStatus}
+                       isFollowing={this.props.isFollowing}
+                       inFollowingUsers={this.props.inFollowingUsers}
             />
         )
     }
 }
 
 
-const mapStateToProps = ({usersPage: {users, pageSize, totalUserCount, currentPage, isFetching}}) => {
+const mapStateToProps = ({usersPage: {users, pageSize, totalUserCount, currentPage, isFetching, isFollowing, inFollowingUsers}}) => {
     return {
         users,
         pageSize,
         totalUserCount,
         currentPage,
         isFetching,
+        isFollowing,
+        inFollowingUsers,
     }
 };
 
@@ -72,6 +77,7 @@ const dispatchesList = {
     setCurrentPage,
     setTotalUsersCount,
     toggleFetchingStatus,
+    toggleFollowingStatus,
 };
 
 export default connect(mapStateToProps, dispatchesList)(UsersContainerClass);

@@ -1,31 +1,27 @@
 import styles from './User.module.css';
 import userAvatar from '../../../assets/images/user-avatar.jpg'
 import {NavLink} from "react-router-dom";
-import axios from "axios";
+import {usersAPI} from "../../../api/api";
 
-export const User = ({isFollow, name, onFollow, id, photos}) => {
+export const User = ({isFollow, name, onFollow, id, photos, toggleFollowingStatus, inFollowingUsers}) => {
     const followUser = () => {
+        toggleFollowingStatus(true, id);
         if(!isFollow) {
-            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {},
-                {withCredentials: true,
-                        headers: {
-                            "API-KEY": "a50253f5-893a-40d8-8d68-f0f185ded4d4",
-                        }})
-                .then(({data}) => {
+            usersAPI.followUser(id)
+                .then((data) => {
                     if (data.resultCode === 0) {
                         onFollow(id);
                     }
+                    toggleFollowingStatus(false, id);
+
                 });
         } else {
-            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`,
-                {withCredentials: true,
-                    headers: {
-                        "API-KEY": "a50253f5-893a-40d8-8d68-f0f185ded4d4",
-                    }})
-                .then(({data}) => {
+            usersAPI.unFollowUser(id)
+                .then((data) => {
                     if (data.resultCode === 0) {
                         onFollow(id);
                     }
+                    toggleFollowingStatus(false, id);
                 });
         }
     };
@@ -39,13 +35,15 @@ export const User = ({isFollow, name, onFollow, id, photos}) => {
     };
 
 
+
+
     return (
         <li>
             <p>{name}</p>
             <NavLink to={`/profile/${id}`}>
                 <p><img className={styles._avatar} src={isUrl(photos.small)} width="90px" height="90px" alt=""/></p>
             </NavLink>
-            <button onClick={followUser}>{getFollowTitle()}</button>
+            <button onClick={followUser} disabled={inFollowingUsers.some(followedId => followedId === id )}>{getFollowTitle()}</button>
         </li>)
 }
 
