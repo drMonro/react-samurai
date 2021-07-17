@@ -1,29 +1,10 @@
 import styles from './User.module.css';
 import userAvatar from '../../../assets/images/user-avatar.jpg'
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../../api/api";
 
-export const User = ({isFollow, name, onFollow, id, photos, toggleFollowingStatus, inFollowingUsers}) => {
+export const User = ({isFollow, name, onFollow, id, photos, inFollowingUsers}) => {
     const followUser = () => {
-        toggleFollowingStatus(true, id);
-        if(!isFollow) {
-            usersAPI.followUser(id)
-                .then((data) => {
-                    if (data.resultCode === 0) {
-                        onFollow(id);
-                    }
-                    toggleFollowingStatus(false, id);
-
-                });
-        } else {
-            usersAPI.unFollowUser(id)
-                .then((data) => {
-                    if (data.resultCode === 0) {
-                        onFollow(id);
-                    }
-                    toggleFollowingStatus(false, id);
-                });
-        }
+        onFollow(id, isFollow)
     };
 
     const getFollowTitle = () => {
@@ -33,8 +14,6 @@ export const User = ({isFollow, name, onFollow, id, photos, toggleFollowingStatu
     const isUrl = (photo) => {
         return !!photo ? photo : userAvatar;
     };
-
-
 
 
     return (

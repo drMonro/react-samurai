@@ -1,45 +1,16 @@
 import {connect} from "react-redux";
-import {followUser, setCurrentPage, setTotalUsersCount, setUsers, toggleFetchingStatus, toggleFollowingStatus} from "../../redux/users-reducer";
+import {followUser, getUsers} from "../../redux/users-reducer";
 import React from "react";
 import Users from "./Users";
-import {usersAPI} from "../../api/api";
 
 class UsersContainerClass extends React.Component {
     componentDidMount() {
-        this.getUsers();
+      this.props.getUsers(this.props.currentPage, this.props.pageSize);
     };
-
-    adaptUserToClientMethod(user) {
-        const adaptedUser = {
-            ...user,
-            isFollow: user.followed,
-        };
-        delete adaptedUser.followed;
-        return adaptedUser;
-    };
-
-    adaptUserToClient(usersData) {
-        return usersData.map(this.adaptUserToClientMethod);
-    };
-
-    getUsers() {
-        this.props.toggleFetchingStatus(true);
-        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
-            .then(({items, totalCount}) => {
-                this.props.toggleFetchingStatus(false);
-                this.props.setUsers(this.adaptUserToClient(items));
-                this.props.setTotalUsersCount(totalCount);
-            });
-    }
 
     onPageChanged = (pageNumber) => {
-        this.props.toggleFetchingStatus(true);
-        this.props.setCurrentPage(pageNumber);
-        usersAPI.getUsers(pageNumber, this.props.pageSize)
-            .then(({items}) => {
-                this.props.toggleFetchingStatus(false);
-                this.props.setUsers(this.adaptUserToClient(items));
-            });
+        this.props.getUsers(pageNumber, this.props.pageSize);
+
     };
 
     render() {
@@ -50,7 +21,6 @@ class UsersContainerClass extends React.Component {
                        totalUserCount={this.props.totalUserCount}
                        pageSize={this.props.pageSize}
                        currentPage={this.props.currentPage}
-                       toggleFollowingStatus={this.props.toggleFollowingStatus}
                        isFollowing={this.props.isFollowing}
                        inFollowingUsers={this.props.inFollowingUsers}
             />
@@ -73,11 +43,7 @@ const mapStateToProps = ({usersPage: {users, pageSize, totalUserCount, currentPa
 
 const dispatchesList = {
     followUser,
-    setUsers,
-    setCurrentPage,
-    setTotalUsersCount,
-    toggleFetchingStatus,
-    toggleFollowingStatus,
+    getUsers,
 };
 
 export default connect(mapStateToProps, dispatchesList)(UsersContainerClass);

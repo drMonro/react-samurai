@@ -1,6 +1,6 @@
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
-import {submitNewMessageActionCreator, updateNewMessageDataActionCreator} from "../../redux/dialogs-reducer";
+import {submitNewMessage, updateNewMessageData} from "../../redux/dialogs-reducer";
 
 
 const mapStateToProps = (state) => {
@@ -12,17 +12,10 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onNewMessageChange: (text) => {
-            dispatch(updateNewMessageDataActionCreator(text))
-        },
-        onNewMessageSubmit: () => {
-            dispatch(submitNewMessageActionCreator())
-        },
-    }
+const dispatchesList = {
+    updateNewMessageData,
+    submitNewMessage,
 };
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+export default connect(mapStateToProps, dispatchesList)(Dialogs);
 
-export default DialogsContainer;

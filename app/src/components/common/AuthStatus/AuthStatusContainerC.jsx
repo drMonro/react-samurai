@@ -1,20 +1,15 @@
 import React from "react";
 import {connect} from "react-redux";
-import {setUserData} from "../../../redux/auth-reducer";
+import {makeAuth} from "../../../redux/auth-reducer";
 import AuthStatus from "./AuthStatus";
-import {usersAPI} from "../../../api/api";
 
 class AuthStatusContainerC extends React.Component {
     componentDidMount() {
-            usersAPI.getAuth().then(({data}) => {
-                if (data.resultCode === 0) {
-                    this.props.setUserData(data);
-                }
-            });
+        this.props.makeAuth();
     }
 
     render() {
-        return <AuthStatus {...this.props}/>
+        return <AuthStatus authId={this.props.authId}/>
     }
 }
 
@@ -25,7 +20,7 @@ const mapStateToProps = ({auth}) => {
 };
 
 const dispatchesList = {
-    setUserData
+    makeAuth
 };
 
 export default connect(mapStateToProps, dispatchesList)(AuthStatusContainerC);

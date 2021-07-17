@@ -1,9 +1,9 @@
 import styles from './Dialogs.module.css';
 import Recipients from "./Recipients/Recipients";
 import DialogHistory from "./DialogHistory/DialogHistory";
-import NewMessageFormContainer from "./NewMessageForm/NewMessageFormContainer";
+import NewMessageForm from "./NewMessageForm/NewMessageForm";
 
-export const Dialogs = ({recipientsData, newMessage, messagesData, onNewMessageChange, onNewMessageSubmit}) => {
+export const Dialogs = ({recipientsData, newMessage, messagesData, updateNewMessageData, submitNewMessage}) => {
     return (
         <section className={styles._}>
             <p>Dialogs</p>
@@ -11,9 +11,9 @@ export const Dialogs = ({recipientsData, newMessage, messagesData, onNewMessageC
                 <Recipients recipientsData={recipientsData}/>
                 <div>
                     <DialogHistory messagesData={messagesData}/>
-                    <NewMessageFormContainer newMessage={newMessage}
-                                             onNewMessageChange={onNewMessageChange}
-                                             onNewMessageSubmit={onNewMessageSubmit}/>
+                    <NewMessageForm newMessage={newMessage}
+                                             onNewMessageChange={updateNewMessageData}
+                                             onNewMessageSubmit={submitNewMessage}/>
                 </div>
             </div>
         </section>);

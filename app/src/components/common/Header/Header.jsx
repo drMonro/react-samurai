@@ -7,7 +7,6 @@ export const Header = () => {
         <header className={styles._}>
             <img src="http://cdn.onlinewebfonts.com/svg/img_176857.png" alt="" width="50px" height="50px"/>
             <AuthStatusContainer />
-
         </header>
     );
 }

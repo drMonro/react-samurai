@@ -48,13 +48,13 @@ const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const submitNewMessageActionCreator = () => {
+export const submitNewMessage = () => {
     return {
         type: SUBMIT_NEW_MESSAGE,
     };
 };
 
-export const updateNewMessageDataActionCreator = (newMessageData) => {
+export const updateNewMessageData = (newMessageData) => {
     return {
         type: UPDATE_NEW_MESSAGE_DATA,
         newMessageData: newMessageData,

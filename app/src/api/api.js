@@ -8,6 +8,14 @@ const axiosInstance = axios.create({
     }
 });
 
+export const authAPI = {
+    getAuth() {
+        return axiosInstance.get(`auth/me`)
+            .then(({data}) => {
+                return data;
+            });
+    },
+}
 
 export const usersAPI = {
     followUser(id) {
@@ -26,13 +34,6 @@ export const usersAPI = {
 
     getUsers(currentPage, pageSize) {
         return axiosInstance.get(`users?page=${currentPage}&count=${pageSize}`)
-            .then(response => {
-                return response.data;
-            });
-    },
-
-    getAuth() {
-        return axiosInstance.get(`auth/me`)
             .then(response => {
                 return response.data;
             });

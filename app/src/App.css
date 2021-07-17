@@ -3,11 +3,13 @@ img {
     max-height: 100%;
 }
 .app-wrapper {
+    position: relative;
     display: grid;
 
     grid-template-areas:
     "header header"
     "navigation content";
+    min-height: 100vh;
 
     grid-template-rows: 50px 1fr;
     grid-template-columns: 2fr 10fr;

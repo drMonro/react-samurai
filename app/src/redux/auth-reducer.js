@@ -1,3 +1,5 @@
+import {authAPI} from "../api/api";
+
 const SET_USER_DATA = 'SET_USER_DATA';
 
 const initialState = {
@@ -6,9 +8,7 @@ const initialState = {
     login: null,
 };
 
-
 const authReducer = (state = initialState, action) => {
-
     switch (action.type) {
         case SET_USER_DATA:
             return {
@@ -22,6 +22,15 @@ const authReducer = (state = initialState, action) => {
 
 export const setUserData = (userData) => ({type: SET_USER_DATA, userData});
 
+export const makeAuth = () => {
+    return (dispatch) => {
+        authAPI.getAuth().then(({data, resultCode}) => {
+            if (resultCode === 0) {
+                dispatch(setUserData(data));
+            }
+        });
+    }
+}
 
 export default authReducer;
 

@@ -1,8 +1,8 @@
 import styles from './Profile.module.css';
 import Posts from "./Posts/Posts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import PostSubmitContainer from "./PostSubmit/PostSubmitContainer";
 import Preloader from "../common/Preloader/Preloader";
+import PostSubmit from "./PostSubmit/PostSubmit";
 
 export const Profile = ({onPostChange, onPostSubmit, newPostText, postsData, profile}) => {
     if (!profile) {
@@ -13,9 +13,9 @@ export const Profile = ({onPostChange, onPostSubmit, newPostText, postsData, pro
             <ProfileInfo {...profile}/>
             <div>
                 <p>My posts</p>
-                <PostSubmitContainer newPostText={newPostText}
-                                     onPostSubmit={onPostSubmit}
-                                     onPostChange={onPostChange}/>
+                <PostSubmit newPostText={newPostText}
+                            submitPost={onPostSubmit}
+                            updatePostText={onPostChange}/>
                 <Posts postsData={postsData}/>
             </div>
         </section>

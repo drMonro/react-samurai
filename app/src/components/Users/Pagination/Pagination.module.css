@@ -1,0 +1,13 @@
+._ {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+._selected {
+    font-weight: bold;
+}
+
+._element {
+    margin-right: 10px;
+}

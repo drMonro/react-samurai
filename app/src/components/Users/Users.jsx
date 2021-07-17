@@ -1,49 +1,31 @@
 import React from "react";
 import styles from './Users.module.css';
 import User from "./User/User";
-import Preloader from "../common/Preloader/Preloader";
+import {usersPagination} from "./Pagination/Pagination";
 
 
+const Users = ({totalUserCount, pageSize, onPageChanged, currentPage, users, onFollow, isFetching, inFollowingUsers}) => {
 
-const Users = ({totalUserCount, pageSize, onPageChanged, currentPage, users, onFollow, isFetching, isFollowing, toggleFollowingStatus, inFollowingUsers}) => {
-    const usersPagination = () => {
-        const pagesCount = Math.ceil(totalUserCount / pageSize);
-        let pages = [];
 
-        for (let i = 1; i <= pagesCount; i++) {
-            pages.push(i);
-        }
+    const usersElements = () => users.map(({name, id, isFollow, photos}) => <User name={name}
+                                                                                  isFollow={isFollow}
+                                                                                  key={id}
+                                                                                  id={id}
+                                                                                  photos={photos}
+                                                                                  onFollow={onFollow}
+                                                                                  inFollowingUsers={inFollowingUsers}/>);
 
-        return (<>
-                {isFetching ? <Preloader/> : null}
-                <ul className={styles._pagination}>
-                    {pages.map(page => {
-                        return (
-                            <li onClick={() => onPageChanged(page)}
-                                className={currentPage === page ? styles._selectedPage : ''}
-                                key={page}>{page}
-                            </li>)
-                    })}
-                </ul>
-            </>
-        );
-    };
-
-    const usersElements = () => users.map(({name, id, isFollow, photoUrl, photos}) => <User name={name}
-                                                                                            isFollow={isFollow}
-                                                                                            key={id}
-                                                                                            id={id}
-                                                                                            photos={photos}
-                                                                                            onFollow={onFollow}
-                                                                                            photoUrl={photoUrl}
-                                                                                            isFollowing={isFollowing}
-                                                                                            inFollowingUsers={inFollowingUsers}
-                                                                                            toggleFollowingStatus={toggleFollowingStatus}/>);
-
+    // console.log(onPageChanged)
     return (
         <section className={styles._}>
             <h1>Users</h1>
-            {usersPagination()}
+            {usersPagination({
+                    totalUserCount,
+                    pageSize,
+                    isFetching,
+                    onPageChanged,
+                    currentPage
+                })}
             <ul className={styles._list}>
                 {usersElements()}
             </ul>
