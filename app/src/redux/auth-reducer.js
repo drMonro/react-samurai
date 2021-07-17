@@ -6,6 +6,7 @@ const initialState = {
     id: null,
     email: null,
     login: null,
+    isAuth: false,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -14,13 +15,14 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 ...action.userData,
+                isAuth: true,
             }
         default:
             return state;
     }
 }
 
-export const setUserData = (userData) => ({type: SET_USER_DATA, userData});
+const setUserData = (userData) => ({type: SET_USER_DATA, userData});
 
 export const makeAuth = () => {
     return (dispatch) => {

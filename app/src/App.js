@@ -6,6 +6,7 @@ import Navigation from "./components/common/Navigation/Navigation";
 import ProfileContainerClass from "./components/Profile/ProfileContainerClass";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainerClass";
+import LoginContainer from "./components/Login/LoginContainerClass";
 
 const App = () => {
     return (
@@ -15,6 +16,7 @@ const App = () => {
             <Route path='/profile/:userId?' render={() => <ProfileContainerClass />}/>
             <Route path='/dialogs' render={() => <DialogsContainer />}/>
             <Route path='/users' render={() => <UsersContainer />}/>
+            <Route path='/login' render={() => <LoginContainer />}/>
         </div>
     );
 }

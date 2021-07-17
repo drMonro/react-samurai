@@ -9,13 +9,13 @@ class AuthStatusContainerC extends React.Component {
     }
 
     render() {
-        return <AuthStatus authId={this.props.authId}/>
+        return <AuthStatus isAuth={this.props.isAuth}/>
     }
 }
 
-const mapStateToProps = ({auth}) => {
+const mapStateToProps = ({auth: {isAuth}}) => {
     return {
-        authId: auth.id
+        isAuth,
     }
 };
 

@@ -1,13 +1,12 @@
 import styles from './AuthStatus.module.css';
+import {NavLink} from "react-router-dom";
 
-export const AuthStatus = ({authId}) => {
-
-    const  ErrorLogin = () => (<p className={styles._error}>You need to login</p>)
+export const AuthStatus = ({isAuth}) => {
+    const  ErrorLogin = () => (<NavLink to="/login" className={styles._error}>You need to login</NavLink>)
     const  SuccessLogin = () => (<p className={styles._success}>Logged In</p>)
     return (
         <div className={styles._}>
-            {!!authId ? <SuccessLogin/> : <ErrorLogin/>}
-
+            {isAuth ? <SuccessLogin/> : <ErrorLogin/>}
         </div>
     );
 }

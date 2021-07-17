@@ -3,12 +3,12 @@ import {connect} from "react-redux";
 import {submitNewMessage, updateNewMessageData} from "../../redux/dialogs-reducer";
 
 
-const mapStateToProps = (state) => {
-    const {dialogsPage: {recipientsData, newMessage, messagesData}} = state;
+const mapStateToProps = ({dialogsPage: {recipientsData, newMessage, messagesData}, auth: {isAuth}}) => {
     return {
-        recipientsData: recipientsData,
-        newMessage: newMessage,
-        messagesData: messagesData,
+        recipientsData,
+        newMessage,
+        messagesData,
+        isAuth,
     }
 };
 

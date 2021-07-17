@@ -14,11 +14,12 @@ class ProfileContainer extends React.Component {
     };
 }
 
-const mapStateToProps = ({profilePage: {postsData, newPostText, profile}}) => {
+const mapStateToProps = ({profilePage: {postsData, newPostText, profile}, auth:{isAuth}}) => {
     return {
         newPostText,
         postsData,
-        profile
+        profile,
+        isAuth
     }
 };
 
