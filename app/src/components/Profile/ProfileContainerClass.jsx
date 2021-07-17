@@ -3,6 +3,7 @@ import Profile from "./Profile";
 import {onPostChange, onPostSubmit, setProfile} from "../../redux/profile-reducer";
 import React from "react";
 import { withRouter } from "react-router-dom";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 class ProfileContainer extends React.Component {
     componentDidMount() {
@@ -14,12 +15,11 @@ class ProfileContainer extends React.Component {
     };
 }
 
-const mapStateToProps = ({profilePage: {postsData, newPostText, profile}, auth:{isAuth}}) => {
+const mapStateToProps = ({profilePage: {postsData, newPostText, profile}}) => {
     return {
         newPostText,
         postsData,
         profile,
-        isAuth
     }
 };
 
@@ -29,7 +29,9 @@ const dispatchesList = {
     setProfile,
 };
 
-const withUrlDataContainerComponent = withRouter(ProfileContainer);
+const AuthRedirectComponent = withAuthRedirect(ProfileContainer)
 
-export default connect(mapStateToProps, dispatchesList)(withUrlDataContainerComponent);
+const WithUrlDataContainerComponent = withRouter(AuthRedirectComponent);
+
+export default connect(mapStateToProps, dispatchesList)(WithUrlDataContainerComponent);
 

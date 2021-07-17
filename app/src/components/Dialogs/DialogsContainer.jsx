@@ -1,14 +1,14 @@
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {submitNewMessage, updateNewMessageData} from "../../redux/dialogs-reducer";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
-const mapStateToProps = ({dialogsPage: {recipientsData, newMessage, messagesData}, auth: {isAuth}}) => {
+const mapStateToProps = ({dialogsPage: {recipientsData, newMessage, messagesData}}) => {
     return {
         recipientsData,
         newMessage,
         messagesData,
-        isAuth,
     }
 };
 
@@ -17,5 +17,7 @@ const dispatchesList = {
     submitNewMessage,
 };
 
-export default connect(mapStateToProps, dispatchesList)(Dialogs);
+const AuthRedirectComponent = withAuthRedirect(Dialogs)
+
+export default connect(mapStateToProps, dispatchesList)(AuthRedirectComponent);
 
