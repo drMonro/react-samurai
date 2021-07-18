@@ -1,7 +1,8 @@
 import styles from './ProfileInfo.module.css';
 import userAvatar from '../../../assets/images/user-avatar.jpg'
+import Status from "../Status/Status";
 
-export const ProfileInfo = ({fullName, photos}) => {
+export const ProfileInfo = ({fullName, photos, aboutMe}) => {
     const isAvatar = (photo) => {
         return !!photo.large ? photo.large : userAvatar;
     }
@@ -9,13 +10,10 @@ export const ProfileInfo = ({fullName, photos}) => {
 
     return (
         <div>
-            <div className={styles._themePicture}>
-                <img src="https://million-wallpapers.ru/wallpapers/4/14/17345193607846010880/ozero-potajnoe.jpg" alt=""/>
-            </div>
-            <h3>Name:</h3>
+            <Status aboutMe={aboutMe}/>
             <span>{fullName}</span>
             <div className={styles._avatar}>
-                <img src={isAvatar(photos)}/>
+                <img src={isAvatar(photos)} alt={fullName}/>
             </div>
         </div>)
 }
