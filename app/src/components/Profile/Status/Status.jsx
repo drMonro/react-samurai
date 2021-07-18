@@ -5,13 +5,13 @@ class Status extends React.Component {
         editMode: false,
     }
 
-    activateEditMode() {
+    activateEditMode = () => {
         this.setState({
             editMode: true,
         })
     }
 
-    deActivateEditMode() {
+    deActivateEditMode = () => {
         this.setState({
             editMode: false,
         })
@@ -21,8 +21,8 @@ class Status extends React.Component {
         return (
             <div>
                 {this.state.editMode ?
-                    <input autoFocus={true} onBlur={this.deActivateEditMode.bind(this)} defaultValue={this.props.aboutMe}/> :
-                    <p onDoubleClick={this.activateEditMode.bind(this)}>{this.props.aboutMe}</p>}
+                    <input autoFocus={true} onBlur={this.deActivateEditMode} defaultValue={this.props.aboutMe}/> :
+                    <p onDoubleClick={this.activateEditMode}>{this.props.aboutMe}</p>}
             </div>
         )
     }
