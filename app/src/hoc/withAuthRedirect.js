@@ -1,6 +1,7 @@
 import React from "react";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
+import {makeAuth} from "../redux/auth-reducer";
 
 const mapStateToProps = ({auth: {isAuth}}) => {
     return {
@@ -8,16 +9,24 @@ const mapStateToProps = ({auth: {isAuth}}) => {
     }
 };
 
-
 export const withAuthRedirect = (Component) => {
     class RedirectComponent extends React.Component {
+        componentDidMount() {
+            if (!this.props.isAuth) {
+                this.props.makeAuth();
+            }
+        }
+
         render() {
-            console.log(this.props.isAuth)
             if (!this.props.isAuth) return <Redirect to={"/login"}/>
             return <Component {...this.props}/>
         }
     }
 
+    const dispatchesList = {
+        makeAuth,
+    }
 
-    return connect(mapStateToProps)(RedirectComponent);
+
+    return connect(mapStateToProps, dispatchesList)(RedirectComponent);
 }

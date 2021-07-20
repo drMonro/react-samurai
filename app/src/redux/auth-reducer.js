@@ -1,11 +1,9 @@
 import {authAPI} from "../api/api";
+import {getStatusProfile, setProfile} from "./profile-reducer";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
 const initialState = {
-    id: null,
-    email: null,
-    login: null,
     isAuth: false,
 };
 
@@ -13,8 +11,6 @@ const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_DATA:
             return {
-                ...state,
-                ...action.userData,
                 isAuth: true,
             }
         default:
@@ -22,13 +18,16 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
-const setUserData = (userData) => ({type: SET_USER_DATA, userData});
+const setAuthStatus = () => ({type: SET_USER_DATA});
 
 export const makeAuth = () => {
+
     return (dispatch) => {
         authAPI.getAuth().then(({data, resultCode}) => {
             if (resultCode === 0) {
-                dispatch(setUserData(data));
+                dispatch(setAuthStatus());
+                dispatch(setProfile(data.id));
+                dispatch(getStatusProfile(data.id));
             }
         });
     }

@@ -2,18 +2,23 @@ import styles from './ProfileInfo.module.css';
 import userAvatar from '../../../assets/images/user-avatar.jpg'
 import Status from "../Status/Status";
 
-export const ProfileInfo = ({fullName, photos, aboutMe}) => {
-    const isAvatar = (photo) => {
-        return !!photo.large ? photo.large : userAvatar;
+export const ProfileInfo = ({profile: {fullName, photos}, profileStatus, isObservingProfile}) => {
+    const isAvatar = () => {
+        if (!photos) {
+            return userAvatar
+        } else if (!photos.large) {
+            return userAvatar
+        } else {
+            return photos.large
+        }
     }
-
 
     return (
         <div>
-            <Status aboutMe={aboutMe}/>
+            <Status profileStatus={profileStatus} isObservingProfile={isObservingProfile}/>
             <span>{fullName}</span>
             <div className={styles._avatar}>
-                <img src={isAvatar(photos)} alt={fullName}/>
+                <img src={isAvatar()} alt={fullName}/>
             </div>
         </div>)
 }

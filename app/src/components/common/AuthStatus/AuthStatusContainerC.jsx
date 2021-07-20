@@ -14,6 +14,7 @@ class AuthStatusContainerC extends React.Component {
 }
 
 const mapStateToProps = ({auth: {isAuth}}) => {
+    // console.log(isAuth)
     return {
         isAuth,
     }

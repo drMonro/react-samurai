@@ -1,8 +1,10 @@
-import {usersAPI} from "../api/api";
+import {profileAPI} from "../api/api";
 
 const SUBMIT_POST = 'SUBMIT_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
+const SET_OBSERVING_PROFILE = 'SET_OBSERVING_PROFILE';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_USER_STATUS = 'SET_USER_STATUS';
 
 const initialState = {
     postsData: [
@@ -12,6 +14,8 @@ const initialState = {
     ],
     newPostText: '',
     profile: null,
+    observingProfile: null,
+    userStatus: "",
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -39,40 +43,58 @@ const profileReducer = (state = initialState, action) => {
                 profile: action.userData,
 
             };
+        case SET_OBSERVING_PROFILE:
+            return {
+                ...state,
+                observingProfile: action.userData,
+            };
+        case SET_USER_STATUS:
+            return {
+                ...state,
+                userStatus: action.status,
+
+            };
         default:
             return state;
     }
 }
 
-export const onPostSubmit = () => {
-    return {
-        type: SUBMIT_POST,
-    }
-};
+export const onPostSubmit = () => ({type: SUBMIT_POST});
+export const onPostChange = (newPostData) => ({type: UPDATE_NEW_POST_TEXT, newPostData});
+const setUserProfile = (userData) => ({type: SET_USER_PROFILE, userData});
+const setObservingProfile = (userData) => ({type: SET_OBSERVING_PROFILE, userData});
+const setUserStatus = (status) => ({type: SET_USER_STATUS, status});
 
-export const setUserProfile = (userData) => {
-    return {
-        type: SET_USER_PROFILE,
-        userData,
-    }
-};
-
-export const onPostChange = (newPostData) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newPostData,
-    }
-};
 
 export const setProfile = (userId) => {
     return (dispatch) => {
-        let user = userId;
-        if (!user) {
-            user = 2
-        }
-        usersAPI.getProfileData(user)
+        profileAPI.getProfileData(userId)
             .then((data) => {
                 dispatch(setUserProfile(data));
+            });
+        getStatusProfile(userId)
+    }
+}
+
+
+export const getObservingProfile = (userId) => {
+    return (dispatch) => {
+        profileAPI.getProfileData(userId)
+            .then((data) => {
+
+                dispatch(setObservingProfile(data));
+            });
+    }
+}
+
+
+export const getStatusProfile = (userId) => {
+    return (dispatch) => {
+        profileAPI.getProfileStatus(userId)
+            .then((data) => {
+                console.log('get st')
+                console.log(data)
+                dispatch(setUserStatus(data));
             });
     }
 }

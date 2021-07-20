@@ -10,6 +10,7 @@ const axiosInstance = axios.create({
 
 export const authAPI = {
     getAuth() {
+
         return axiosInstance.get(`auth/me`)
             .then(({data}) => {
                 return data;
@@ -38,11 +39,29 @@ export const usersAPI = {
                 return response.data;
             });
     },
+}
 
+export const profileAPI = {
     getProfileData(userId) {
         return axiosInstance.get(`profile/${userId}`)
             .then(response => {
                 return response.data;
             });
-    }
+    },
+
+    getProfileStatus(userId) {
+        return axiosInstance.get(`profile/status/${userId}`)
+            .then(response => {
+                // console.log(`${response} respGetStatus`)
+                return response.data;
+            });
+    },
+
+    // updatetProfileStatus() {
+    //     return axiosInstance.put(`profile/status`)
+    //         .then(response => {
+    //             // console.log(`${response} respUpdtStatus`)
+    //             // return response.data;
+    //         });
+    // },
 }
