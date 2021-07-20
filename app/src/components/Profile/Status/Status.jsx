@@ -11,14 +11,15 @@ class Status extends React.Component {
         })
     }
 
-    deActivateEditMode = () => {
+    deActivateEditMode = (e) => {
         this.setState({
             editMode: false,
         })
+        this.props.updateStatusProfile(e.target.value);
+
     }
 
     getProfileStatus = () => {
-        console.log(this.props)
         if (this.props.isObservingProfile) {
             return <p>{this.props.profileStatus}</p>
         } else {

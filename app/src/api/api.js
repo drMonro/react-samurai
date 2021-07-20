@@ -52,16 +52,11 @@ export const profileAPI = {
     getProfileStatus(userId) {
         return axiosInstance.get(`profile/status/${userId}`)
             .then(response => {
-                // console.log(`${response} respGetStatus`)
                 return response.data;
             });
     },
 
-    // updatetProfileStatus() {
-    //     return axiosInstance.put(`profile/status`)
-    //         .then(response => {
-    //             // console.log(`${response} respUpdtStatus`)
-    //             // return response.data;
-    //         });
-    // },
+    updateProfileStatus(status) {
+        return axiosInstance.put(`profile/status`, {status: status})
+    },
 }

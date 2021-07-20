@@ -2,7 +2,7 @@ import styles from './ProfileInfo.module.css';
 import userAvatar from '../../../assets/images/user-avatar.jpg'
 import Status from "../Status/Status";
 
-export const ProfileInfo = ({profile: {fullName, photos}, profileStatus, isObservingProfile}) => {
+export const ProfileInfo = ({profile: {fullName, photos}, profileStatus, isObservingProfile, updateStatusProfile}) => {
     const isAvatar = () => {
         if (!photos) {
             return userAvatar
@@ -15,7 +15,7 @@ export const ProfileInfo = ({profile: {fullName, photos}, profileStatus, isObser
 
     return (
         <div>
-            <Status profileStatus={profileStatus} isObservingProfile={isObservingProfile}/>
+            <Status profileStatus={profileStatus} isObservingProfile={isObservingProfile} updateStatusProfile={updateStatusProfile}/>
             <span>{fullName}</span>
             <div className={styles._avatar}>
                 <img src={isAvatar()} alt={fullName}/>

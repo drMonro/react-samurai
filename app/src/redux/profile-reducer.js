@@ -52,7 +52,6 @@ const profileReducer = (state = initialState, action) => {
             return {
                 ...state,
                 userStatus: action.status,
-
             };
         default:
             return state;
@@ -81,7 +80,6 @@ export const getObservingProfile = (userId) => {
     return (dispatch) => {
         profileAPI.getProfileData(userId)
             .then((data) => {
-
                 dispatch(setObservingProfile(data));
             });
     }
@@ -92,9 +90,16 @@ export const getStatusProfile = (userId) => {
     return (dispatch) => {
         profileAPI.getProfileStatus(userId)
             .then((data) => {
-                console.log('get st')
-                console.log(data)
                 dispatch(setUserStatus(data));
+            });
+    }
+}
+
+export const updateStatusProfile = (status) => {
+    return (dispatch) => {
+        profileAPI.updateProfileStatus(status)
+            .then(() => {
+                dispatch(setUserStatus(status));
             });
     }
 }
