@@ -1,6 +1,13 @@
 import React from "react";
+import {Formik, Field, Form} from 'formik';
 
 class Status extends React.Component {
+    constructor(props) {
+        super(props);
+        this.StatusForm = this.StatusForm.bind(this);
+        this.updateStatusProfile = props.updateStatusProfile;
+    }
+
     state = {
         editMode: false,
     }
@@ -15,8 +22,28 @@ class Status extends React.Component {
         this.setState({
             editMode: false,
         })
-        this.props.updateStatusProfile(e.target.value);
 
+        this.updateStatusProfile(e.target.value);
+    }
+
+    StatusForm() {
+        return (
+            <Formik
+                initialValues={{
+                    profileStatus: this.props.profileStatus,
+                }}
+                onSubmit={({profileStatus}) => {
+                    this.setState({
+                        editMode: false,
+                    })
+                    this.updateStatusProfile(profileStatus);
+                }}
+            >
+                <Form>
+                    <Field autoFocus={true} onBlur={this.deActivateEditMode} id="firstName" name="profileStatus" placeholder="Ваш статус"/>
+                </Form>
+            </Formik>
+        )
     }
 
     getProfileStatus = () => {
@@ -26,7 +53,7 @@ class Status extends React.Component {
             return (
                 <>
                     {this.state.editMode ?
-                        <input autoFocus={true} onBlur={this.deActivateEditMode} defaultValue={this.props.profileStatus}/> :
+                        <this.StatusForm /> :
                         <p onDoubleClick={this.activateEditMode}>{this.props.profileStatus}</p>
                     }
                 </>)
