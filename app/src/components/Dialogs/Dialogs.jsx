@@ -4,7 +4,7 @@ import DialogHistory from "./DialogHistory/DialogHistory";
 import NewMessageForm from "./NewMessageForm/NewMessageForm";
 import {Redirect} from "react-router-dom";
 
-export const Dialogs = ({recipientsData, newMessage, messagesData, updateNewMessageData, submitNewMessage, isAuth}) => {
+export const Dialogs = ({recipientsData, messagesData, submitNewMessage, isAuth}) => {
     if (!isAuth) return <Redirect to={"/login"}/>
 
     return (
@@ -14,9 +14,7 @@ export const Dialogs = ({recipientsData, newMessage, messagesData, updateNewMess
                 <Recipients recipientsData={recipientsData}/>
                 <div>
                     <DialogHistory messagesData={messagesData}/>
-                    <NewMessageForm newMessage={newMessage}
-                                             onNewMessageChange={updateNewMessageData}
-                                             onNewMessageSubmit={submitNewMessage}/>
+                    <NewMessageForm submitNewMessage={submitNewMessage}/>
                 </div>
             </div>
         </section>);

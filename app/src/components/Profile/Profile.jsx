@@ -4,16 +4,14 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import Preloader from "../common/Preloader/Preloader";
 import PostSubmit from "./PostSubmit/PostSubmit";
 
-export const Profile = ({onPostChange, onPostSubmit, newPostText, postsData, profile, profileStatus, isObservingProfile, updateStatusProfile}) => {
+export const Profile = ({onPostSubmit, postsData, profile, profileStatus, isObservingProfile, updateStatusProfile}) => {
     if (!profile) {return <Preloader/>}
     return (
         <section className={styles._}>
             <ProfileInfo profile={profile} profileStatus={profileStatus} isObservingProfile={isObservingProfile} updateStatusProfile={updateStatusProfile}/>
             <div>
                 <p>My posts</p>
-                {isObservingProfile ? null : <PostSubmit newPostText={newPostText}
-                                                         submitPost={onPostSubmit}
-                                                         updatePostText={onPostChange}/>}
+                {isObservingProfile ? null : <PostSubmit submitPost={onPostSubmit}/>}
 
                 <Posts postsData={postsData}/>
             </div>

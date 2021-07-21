@@ -1,21 +1,26 @@
 import React from "react";
+import {Field, withFormik} from "formik";
 
-export const PostSubmit = ({updatePostText, submitPost, newPostText}) => {
-    const postSubmit = (evt) => {
-        evt.preventDefault();
-        submitPost();
+const PostSubmit = ({submitPost}) => {
+    const PostSubmitForm = ({handleSubmit}) => {
+        return (
+            <form onSubmit={handleSubmit}>
+                <Field as="textarea" name="newPostText" />
+                <button type="submit">Send</button>
+            </form>
+        )
     };
 
-    const onPostChange = (evt) => {
-        const text = evt.target.value;
-        updatePostText(text);
-    };
+    const PostSubmitFormik = withFormik({
+        mapPropsToValues: () => ({ newPostText:'' }),
+        handleSubmit: submitPost,
+        displayName: 'PostSubmitForm',
+    })(PostSubmitForm);
 
     return (
-        <form>
-            <textarea onChange={onPostChange} value={newPostText}/>
-            <button onClick={postSubmit} value={newPostText}>Send</button>
-        </form>);
+        <PostSubmitFormik/>
+    )
+
 }
 
 export default PostSubmit;

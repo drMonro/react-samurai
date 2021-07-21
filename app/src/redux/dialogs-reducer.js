@@ -1,8 +1,6 @@
 const SUBMIT_NEW_MESSAGE = 'SUBMIT_NEW_MESSAGE';
-const UPDATE_NEW_MESSAGE_DATA = 'UPDATE_NEW_MESSAGE_DATA';
 
 const initialState = {
-    newMessage: '',
     messagesData: [
         {
             message: 'Lorem ipsum dolor sit amet, consectetur adipisicing.',
@@ -26,38 +24,25 @@ const initialState = {
 }
 
 const dialogsReducer = (state = initialState, action) => {
-    const newMessage = {
-        message: state.newMessage,
-        id: 4,
-    };
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_DATA:
-            return {
-                ...state,
-                newMessage: action.newMessageData,
-            }
         case SUBMIT_NEW_MESSAGE:
 
             return {
                 ...state,
-                messagesData: [...state.messagesData, newMessage],
-                newMessage: '',
+                messagesData: [...state.messagesData, {
+                    message: action.data.newMessageText,
+                    id: 4,
+                }],
             }
         default:
             return state;
     }
 }
 
-export const submitNewMessage = () => {
+export const submitNewMessage = (data) => {
     return {
         type: SUBMIT_NEW_MESSAGE,
-    };
-};
-
-export const updateNewMessageData = (newMessageData) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_DATA,
-        newMessageData: newMessageData,
+        data
     };
 };
 

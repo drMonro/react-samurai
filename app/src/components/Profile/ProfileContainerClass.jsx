@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import Profile from "./Profile";
-import {getObservingProfile, getStatusProfile, onPostChange, onPostSubmit, setProfile, updateStatusProfile} from "../../redux/profile-reducer";
+import {getObservingProfile, getStatusProfile, onPostSubmit, setProfile, updateStatusProfile} from "../../redux/profile-reducer";
 import React from "react";
 import {withRouter} from "react-router-dom";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
@@ -61,8 +61,7 @@ class ProfileContainer extends React.Component {
     }
 
     render() {
-        return <Profile onPostChange={this.props.onPostChange}
-                        newPostText={this.props.newPostText}
+        return <Profile
                         updateStatusProfile={this.props.updateStatusProfile}
                         postsData={this.props.postsData}
                         profile={this.state.profile}
@@ -83,7 +82,6 @@ const mapStateToProps = ({profilePage: {postsData, newPostText, profile, observi
 };
 
 const dispatchesList = {
-    onPostChange,
     onPostSubmit,
     setProfile,
     getObservingProfile,
