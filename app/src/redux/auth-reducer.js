@@ -20,14 +20,24 @@ const authReducer = (state = initialState, action) => {
 
 const setAuthStatus = () => ({type: SET_USER_DATA});
 
-export const makeAuth = () => {
-
+export const checkAuthorization = () => {
     return (dispatch) => {
-        authAPI.getAuth().then(({data, resultCode}) => {
+        authAPI.checkAuth().then(({data, resultCode}) => {
             if (resultCode === 0) {
                 dispatch(setAuthStatus());
                 dispatch(setProfile(data.id));
                 dispatch(getStatusProfile(data.id));
+            }
+        });
+    }
+}
+
+export const makeAuthorization = (data) => {
+    return (dispatch) => {
+        authAPI.makeLogin(data).then(({data: {userId}, resultCode}) => {
+            if (resultCode === 0) {
+                dispatch(setProfile(userId));
+                dispatch(getStatusProfile(userId));
             }
         });
     }

@@ -142,7 +142,6 @@ export const getUsers = (currentPage, pageSize) => {
 
 export const followUser = (id, isFollow) => {
     return (dispatch) => {
-        dispatch(toggleFollowingStatus(true, id));
         if(!isFollow) {
             usersAPI.followUser(id)
                 .then((data) => {

@@ -9,9 +9,15 @@ const axiosInstance = axios.create({
 });
 
 export const authAPI = {
-    getAuth() {
-
+    checkAuth() {
         return axiosInstance.get(`auth/me`)
+            .then(({data}) => {
+                return data;
+            });
+    },
+
+    makeLogin({login, password, isRememberMe}) {
+        return axiosInstance.post(`auth/login`, {email: login, password: password, rememberMe: isRememberMe})
             .then(({data}) => {
                 return data;
             });

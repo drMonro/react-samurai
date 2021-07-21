@@ -1,7 +1,7 @@
 import React from "react";
 import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
-import {makeAuth} from "../redux/auth-reducer";
+import {checkAuthorization} from "../redux/auth-reducer";
 
 const mapStateToProps = ({auth: {isAuth}}) => {
     return {
@@ -24,7 +24,7 @@ export const withAuthRedirect = (Component) => {
     }
 
     const dispatchesList = {
-        makeAuth,
+        makeAuth: checkAuthorization,
     }
 
 

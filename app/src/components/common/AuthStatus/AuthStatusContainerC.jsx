@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {makeAuth} from "../../../redux/auth-reducer";
+import {checkAuthorization} from "../../../redux/auth-reducer";
 import AuthStatus from "./AuthStatus";
 
 class AuthStatusContainerC extends React.Component {
@@ -21,7 +21,7 @@ const mapStateToProps = ({auth: {isAuth}}) => {
 };
 
 const dispatchesList = {
-    makeAuth
+    makeAuth: checkAuthorization
 };
 
 export default connect(mapStateToProps, dispatchesList)(AuthStatusContainerC);

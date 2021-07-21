@@ -2,6 +2,7 @@ import {connect} from "react-redux";
 import Login from "./Login";
 import React from "react";
 import {compose} from "redux";
+import {makeAuthorization} from "../../redux/auth-reducer";
 
 class LoginContainer extends React.Component {
     componentDidMount() {
@@ -22,9 +23,7 @@ const mapStateToProps = () => {
 };
 
 const dispatchesList = {
-    // onPostChange,
-    // onPostSubmit,
-    // setProfile,
+    makeAuthorization
 };
 
 // const withUrlDataContainerComponent = withRouter(ProfileContainer);
